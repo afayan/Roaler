@@ -48,6 +48,8 @@ if (isset($_GET["id"])) {
     xhr.open("POST", "processing.php", true)
 
     xhr.onload = function() {
+
+        //setting the default params
         if (this.status === 200) {
             console.table(JSON.parse(this.responseText))
 
@@ -68,11 +70,16 @@ if (isset($_GET["id"])) {
 
 
     document.getElementById('save').addEventListener('click', function() {
+        fileGiven = false
+
+        //saving new details
         newUsername = document.getElementById('newUsername').value
         console.log(newUsername)
 
+        
         fileInfo = document.getElementById('getProfilePic').files[0]
         console.table(fileInfo)
+       
 
         var changeprofile = {}
 
@@ -82,7 +89,15 @@ if (isset($_GET["id"])) {
         changeprofile.rtype = 'editProfile'
         changeprofile.id = <?=$id?>;
 
-        changeprofile.image = fileInfo.name
+
+        if (fileInfo) {
+            changeprofile.image = fileInfo.name
+        }
+
+        else{
+            changeprofile.image = 'no'
+        }
+
         
         console.table(changeprofile)
 

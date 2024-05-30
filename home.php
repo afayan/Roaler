@@ -216,6 +216,7 @@
 
         }
 
+        //logout
         function logout(){
           var logout = {
             rtype: 'logout'
@@ -241,12 +242,11 @@
             messageArray.slice().reverse().forEach(element => {
                 // console.log(messageArray.image);
 
-                // console.table(element)
+                 console.table(element)
 
-            html+=`<div class="tweet-content">
+            html+=`<div class="tweet-content" onclick = "window.location.href = 'profile.php?id=${element.userid}' " >
             <strong class = "message-info"> 
             <img src="images/${element.image}" alt="prfilepic" class = "profilePicSmall">
-
             ${element.name}  <span class="usernameTag">@${element.username}</span></strong>
             <p  class= "tweetText">
             ${element.message}

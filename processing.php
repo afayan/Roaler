@@ -103,7 +103,7 @@ switch ($type) {
 
         //echo "inserted into database";
 
-        $showMessages = "select u.username, u.name, m.message, u.image from users u, messages m where u.userid = m.userid;";
+        $showMessages = "select u.userid, u.username, u.name, m.message, u.image from users u, messages m where u.userid = m.userid;";
 
         $messagesArray = mysqli_query($conn, $showMessages);
 
@@ -255,7 +255,15 @@ switch ($type) {
         $id = $myData['id'];
         $image = $myData['image'];
 
-        $q = "update users set username = '$username', name = '$name', bio = '$bio', image = '$image' where userid = $id; ";
+        if ($image === 'no') {
+            # code...
+            $q = "update users set username = '$username', name = '$name', bio = '$bio' where userid = $id; ";
+        }
+
+        else{
+            $q = "update users set username = '$username', name = '$name', bio = '$bio', image = '$image' where userid = $id; ";
+        }
+
 
         mysqli_query($conn, $q);
 
@@ -266,7 +274,7 @@ switch ($type) {
 
     case 'defo':
 
-        $q = "select u.username, u.name, m.message, u.image from users u, messages m where u.userid = m.userid;";
+        $q = "select u.userid, u.username, u.name, m.message, u.image from users u, messages m where u.userid = m.userid;";
         # code...
 
         echo convertToJSON(mysqli_query($conn,$q));
@@ -281,9 +289,30 @@ switch ($type) {
         echo convertToJSON(mysqli_query($conn, $q));
         break;
 
+    case 'uploadMedia':
+        # code...
+        echo "added media";
+        $title = $myData['name'];
+        $image = $myData['fileInfo'];
+        $type = $myData['type'];
+        $url = $myData['url'];
+
+        $q = "insert into media(title, type, image, url) values ('$title', '$type', '$image', '$url');";
+
+        mysqli_query($conn, $q);
+        break;
+
+    case 'getMedia':
+        # code...
+        $q = "select * from media";
+
+        echo convertToJSON(mysqli_query($conn, $q));
+
+        break;
+
     default:
         # code...
-        echo "no type given";
+        echo "no rtype given";
         break;
 }
 

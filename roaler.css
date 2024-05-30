@@ -170,6 +170,9 @@ background-color: aqua;
   width: 700px;
   height: 100%;
   margin-left: 250px;
+  font-size: 18px;
+  padding: 5px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .signupform{
@@ -197,7 +200,7 @@ background-color: aqua;
   width: 200px;
   height: 200px;
   border-radius: 100px;
-  background-size: cover;
+  object-fit: cover;
 }
 
 #bottom{
@@ -346,11 +349,12 @@ background-color: aqua;
 
 
 #media{
-background-color: azure;
-flex: 1;
-overflow-y: scroll;
-display: flex;
-flex-direction: column;
+  background-color: rgb(73, 73, 73);
+  flex: 1;
+  overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 /* weather card */
@@ -537,14 +541,14 @@ flex-direction: column;
 /* newscard starts */
 
 #news{
-  background-color: #555;
+  background-color: #575757;
   flex: 2;
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   flex-direction: row;
     flex-wrap: wrap; /* Allow flex items to wrap onto multiple lines */
     justify-content: flex-start;
-    height: max-content;
+    overflow-y: scroll;
   }
 
 .newscard {
@@ -554,7 +558,18 @@ flex-direction: column;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 16px;
-  background-color: #fff;
+  
+
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border:1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.newscard:hover{
+  cursor: pointer;
 }
 
 .newscard-image {
@@ -565,15 +580,239 @@ flex-direction: column;
 
 .newscard-content {
   padding: 16px;
+  color: #2b2b2b;
 }
 
 .newscard-title {
   margin: 0;
-  font-size: 1.5em;
-  color: #333;
+  font-size: 20px;
+  color: #ffffff;
 }
 
 .newscard p {
   margin: 8px 0 0;
-  color: #666;
+  color: #ffffff;
+}
+
+/* newscard ends */
+
+.scrollNews{
+  padding: 20px;
+  width: 50%;
+}
+
+/* buttonforAdd */
+
+.add {
+  position: absolute;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #34974d;
+  background-color: #3aa856;
+  top: 90%;
+  left: 90%;
+  z-index: 99999;
+}
+
+.add, .button__icon, .button__text {
+  transition: all 0.3s;
+}
+
+.add .button__text {
+  transform: translateX(30px);
+  color: #fff;
+  font-weight: 600;
+}
+
+.add .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: #34974d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add .svg {
+  width: 30px;
+  stroke: #fff;
+}
+
+.add:hover {
+  background: #34974d;
+}
+
+.add:hover .button__text {
+  color: transparent;
+}
+
+.add:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.add:active .button__icon {
+  background-color: #2e8644;
+}
+
+.add:active {
+  border: 1px solid #2e8644;
+}
+
+/* buttonForAdd ends*/
+
+#addConfirm{
+  position: absolute;
+  background-color: #0eff01;
+  display: flex;
+  height: 200px;
+  width: 300px;
+  z-index: 9999;
+  padding: 20px;
+  left: 40%;
+  top: 1000px;
+  transition: 0.s ease-out;
+  align-items: center;
+
+  /* display: none; */
+}
+
+/* :focus {
+  outline: 0;
+  border-color: #2260ff;
+  box-shadow: 0 0 0 4px #b5c9fc;
+} */
+
+.mydict div {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+
+.mydict input[type="radio"] {
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.mydict input[type="radio"]:checked + span {
+  box-shadow: 0 0 0 0.0625em #0043ed;
+  background-color: #dee7ff;
+  z-index: 1;
+  color: #0043ed;
+}
+
+label span {
+  display: block;
+  cursor: pointer;
+  background-color: #fff;
+  padding: 0.375em .75em;
+  position: relative;
+  margin-left: .0625em;
+  box-shadow: 0 0 0 0.0625em #b5bfd9;
+  letter-spacing: .05em;
+  color: #3e4963;
+  text-align: center;
+  transition: background-color .5s ease;
+}
+
+label:first-child span {
+  border-radius: .375em 0 0 .375em;
+}
+
+label:last-child span {
+  border-radius: 0 .375em .375em 0;
+}
+
+
+/* file upload */
+
+.custum-file-upload {
+  height: 200px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  gap: 20px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #e8e8e8;
+  background-color: #212121;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0px 48px 35px -48px #e8e8e8;
+}
+
+.custum-file-upload .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custum-file-upload .icon svg {
+  height: 80px;
+  fill: #e8e8e8;
+}
+
+.custum-file-upload .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custum-file-upload .text span {
+  font-weight: 400;
+  color: #e8e8e8;
+}
+
+.custum-file-upload input {
+  display: none;
+}
+
+.mediaCard-content{
+  height: 10%;
+}
+
+.mediaCard-title{
+  height: 10%;
+}
+
+.mediaCard-image{
+  height: 80%;
+  background-size: cover;
+  background-position: center;
+}
+
+.mediaCard{
+  width: 270px;
+  height: 340px;
+  
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 16px;
+  
+
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border:1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+#contribute{
+  margin: 10px;
+  padding: 10px;
 }
