@@ -34,7 +34,7 @@
           <h1>Roaler</h1>
           <button class="leftbutton">Home</button>
           <button class="leftbutton" id="searchMenu">Search</button>
-          <button class="leftbutton">Explore</button>
+          <button class="leftbutton" onclick="window.location.href='explore.php'">Explore</button>
           <button class="leftbutton" onclick="window.location.href='inbox.php?id=<?=$_SESSION['id']?>'">Inbox</button>
           <button class="leftbutton" onclick="window.location.href='profile.php?id=<?=$_SESSION['id']?>'">Profile</button>
           <button class="leftbutton">Settings</button>
@@ -71,7 +71,7 @@
 
       <footer>
       <form id="sendMesg">
-        <input type="text" class="chat" name="chat1" id="chat">
+        <textarea name="chat1" id="chat" class="chat"></textarea>
         <button class="sendbutton" type="button" name="sendbutton1" id="sendMessage">Send</button>
         </form>
         

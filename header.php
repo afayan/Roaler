@@ -22,7 +22,7 @@ session_start();
           <h1>Roaler</h1>
           <button class="leftbutton" onclick="window.location.href='home.php'">Home</button>
           <button class="leftbutton" id="searchMenu">Search</button>
-          <button class="leftbutton" >Explore</button>
+          <button class="leftbutton" onclick="window.location.href='explore.php'">Explore</button>
           <button class="leftbutton" onclick="window.location.href='inbox.php?id=<?=$_SESSION['id']?>'">Inbox</button>
           <button class="leftbutton" onclick="window.location.href='profile.php?id=<?=$_SESSION['id']?>'">Profile</button>
           <button class="leftbutton">Settings</button>
