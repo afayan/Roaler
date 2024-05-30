@@ -50,11 +50,22 @@
             ?>
           </div>
             <div class="profile-profession">Software Developer</div>
+            <p class="bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam vel quae id aperiam sequi. Nesciunt similique quasi laudantium, explicabo cupiditate earum iusto nam ullam corporis ipsam dolores, nisi nobis veniam.</p>
         </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam vel quae id aperiam sequi. Nesciunt similique quasi laudantium, explicabo cupiditate earum iusto nam ullam corporis ipsam dolores, nisi nobis veniam.</p>
         
           <button onclick="logout()">logout</button>
+          <p>You might like</p>
+          <div class="trends">
+            <div class="recommProfiles">
+              <img class="profilePicSmall" src="images/090cf2101b1467c1e547e0e08aa9a965.jpg" alt="">
+              <div class="a2">
+              <p>SHitman</p>
+              <p>bio</p>
+              </div>
+            </div>
+          </div>
         </div>
+
 
 
 
@@ -102,6 +113,7 @@
         function searchProfiles(){
          // console.log("so u wanna search?");
           var searchQuery = {};
+          let id = <?= $_SESSION['id']?>
 
           var profileToSearch = document.getElementById('searchbar').value;
 
@@ -224,7 +236,7 @@
             html = '';
 
             
-            console.table(messageArray)
+            // console.table(messageArray)
 
             messageArray.slice().reverse().forEach(element => {
                 // console.log(messageArray.image);
@@ -236,7 +248,7 @@
             <img src="images/${element.image}" alt="prfilepic" class = "profilePicSmall">
 
             ${element.name}  <span class="usernameTag">@${element.username}</span></strong>
-            <p>
+            <p  class= "tweetText">
             ${element.message}
             </p>
             </div>`;   
@@ -245,6 +257,59 @@
             Roll.innerHTML = html;
             return;
         }
+
+        renderTrends()
+
+        function renderTrends() {
+          var getTrends = {}
+          getTrends.rtype = 'trends'
+          getTrends.id = <?= $_SESSION['id']?>
+
+
+          xhr = new XMLHttpRequest()
+          xhr.open('POST', 'processing.php', true)
+
+          xhr.onload = function() {
+            if (this.status === 200) {
+              console.table(JSON.parse(this.responseText))
+              obj = JSON.parse(this.responseText)
+
+              //                 <a href="profile.php?id=${element.userid}">                     </a>
+
+
+
+
+              html = ''
+
+              obj.forEach(element => {
+
+                html += `   
+                  <div class="recommProfiles" onclick="window.location.href='profile.php?id=${element.userid}'">
+                  <img class="profilePicSmall" src="images/${element.image}" alt="dp">
+                  <div class="a2">
+                  <p>${element.name}</p>
+                  <p>${element.username}</p>
+                  </div>
+                  </div>
+                  `
+            } )
+
+
+              document.querySelector('.trends').innerHTML = html;
+             
+
+              // renderTrends(JSON.parse(this.responseText))
+            }
+          }
+
+          xhr.send(JSON.stringify(getTrends))
+        }
+
+
+
+        // function renderTrends(obj){
+        //   console.table(obj)
+        // }
     </script>
 </body>
 </html>

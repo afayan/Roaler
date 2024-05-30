@@ -26,6 +26,11 @@ body {
     border-bottom: 1px solid #e1e8ed;
     padding: 10px;
     display: flex;
+    background-color: #e1e8ed;
+    width: 600px;
+    margin: 10px;
+    margin-bottom: 0px;
+    border-radius: 7px;
   }
 
   .tweet img {
@@ -42,6 +47,12 @@ body {
     margin: 10px;
     margin-right: 400px;
     width: 800px;
+    height: max-content;
+  }
+
+  .tweetText{
+    white-space: pre-wrap;
+    height: max-content;
   }
 
   .message-info{
@@ -164,13 +175,13 @@ background-color: aqua;
   background-color: #01e1ff;
   display: flex;
   flex-direction: column;
-  width: 800px;
+  width: 600px;
   padding: 40px;
 }
 
 .signupText{
-  padding: 20px;
-  margin: 30px;
+  padding: 16px;
+  margin: 20px;
 }
 
 #top{
@@ -190,7 +201,8 @@ background-color: aqua;
 
 #bottom{
   background-color: #555;
-  height: 60%;
+  height: max-content;
+  padding-bottom: 10px;
 }
 
 .messageContent{
@@ -294,4 +306,24 @@ background-color: aqua;
   height: 50px;
   width: 120px;
   border: none;
+}
+
+.trends{
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 430px;
+}
+
+.recommProfiles{
+  display: flex;
+  flex-direction: row;
+  background-color: yellow;
+  margin: 5px;
+  padding: 10px;
+  transition: 1s;
+}
+
+.recommProfiles:hover{
+  cursor: pointer;
 }

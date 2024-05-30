@@ -5,14 +5,19 @@
     <title>Roaler Login</title>
     <link rel="stylesheet" href="roaler.css">
 </head>
-<body>
+<body style="display: flex; flex-direction:row">
+
+<div class="logo" style="width: 50%; background-color:brown"></div>
+
     <form id="inputform" class="signupform">
+        <h1>Sign in to Roaler</h1>
         <!-- <input type="text" placeholder="name" id="name" class="signupText"> -->
         <input type="email" placeholder="email" id="email" class="signupText">
         <input type="password" placeholder="password" id="password" class="signupText">
         <!-- <input type="password" placeholder="retype password" id="password2" class="signupText"> -->
         <!-- <input type="text" placeholder="unique username" id="username" class="signupText"> -->
-        <button type="button" id="login" style="padding: 30px;">Submit</button>
+        <button type="button" id="login" class="signupText">Login</button>
+        <button type="button" class="signupText" onclick="window.location.href = 'signup.php'">New? Sign up</button>
         <p id="error"></p>
     </form>
 </body>

@@ -272,6 +272,15 @@ switch ($type) {
         echo convertToJSON(mysqli_query($conn,$q));
         break;
 
+    case 'trends':
+        # code...
+        $id = $myData['id'];
+
+        $q = "select u.userid, u.username, u.name, u.image, u.bio from users u where u.userid not in (select id1 from friends where id1 = $id or id2 = $id) and u.userid not in (select id2 from friends where id1 = $id or id2 = $id);";
+
+        echo convertToJSON(mysqli_query($conn, $q));
+        break;
+
     default:
         # code...
         echo "no type given";

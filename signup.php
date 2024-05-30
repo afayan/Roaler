@@ -5,14 +5,23 @@
     <title>Roaler Signup</title>
     <link rel="stylesheet" href="roaler.css">
 </head>
-<body>
+<body style="display: flex; flex-direction:row">
+
+<div class="logo" style="width: 50%; background-color:brown"></div>
+
+
+
     <form id="inputform" class="signupform">
+        <h1>Sign up to Roaler</h1>
+
         <input type="text" placeholder="name" id="name" class="signupText">
         <input type="password" placeholder="password" id="password" class="signupText">
         <input type="password" placeholder="retype password" id="password2" class="signupText">
         <input type="text" placeholder="unique username" id="username" class="signupText">
         <input type="email" placeholder="email" id="email" class="signupText">
-        <button type="button" id="submit" style="padding: 30px;">Submit</button>
+        <button type="button" id="submit"  class="signupText">Create account</button>
+        <button type="button" class="signupText" onclick="window.location.href = 'login.php'">Already have an account? Log in</button>
+
     </form>
 </body>
 </html>

@@ -29,7 +29,7 @@ echo $id;
         
         <button id="follow">add Friend</button>
     </div>
-    <div id="middle">hello</div>
+    <div id="middle">Posts</div>
     <div id="bottom">
         <div id="messagesbyprofile" style="display: flex; flex-direction:column;">
         </div>
