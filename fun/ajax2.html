@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="button1">Get users</button>
+    <button id="button2">Get user</button>
+    <div class="roll"></div>
+
+    <script>
+        document.getElementById('button1').addEventListener('click', loadUsers)
+        var mydiv = document.querySelector('.roll');
+
+        function loadUsers() {
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("GET", "user.json", true)
+
+            xhr.onload = function() {
+                if (this.status === 200) {
+
+                    var user = JSON.parse(this.responseText);
+
+
+                    var output = '';
+
+                    for( var i in user){
+                        console.log(user[i].id);
+                        console.log(user[i].username);
+
+                        output += `<p> ${user[i].username} </p>`;
+                        
+                    }
+
+                    mydiv.innerHTML = output;
+
+                }
+            }
+
+            xhr.send();
+            
+        }
+    </script>
+</body>
+</html>

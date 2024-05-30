@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>External API</title>
+</head>
+<body>
+    <button id="button">Load GitHub users</button>
+    <br><br>
+    <h1>GitHub users</h1>
+    <div id="users">  </div>    
+
+    <script>
+        document.getElementById('button').addEventListener('click', loadgit)
+
+        function loadgit(){
+
+            console.log("loadgit achieved");
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://api.github.com/users', true);
+
+            xhr.onload = function(){
+                if (this.status === 200) {
+                    var users = JSON.parse(this.responseText);
+                    console.log("hello");
+
+                    console.log(users);
+
+
+                    var inner = '';
+                    for(i in users){
+                        console.log(users[i]);
+                    }
+                    
+                }
+            }
+
+            xhr.send();
+        }
+    </script>
+
+</body>
+</html>

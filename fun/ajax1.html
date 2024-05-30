@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax - 1</title>
+</head>
+<body>
+    <button id="button">Get text file</button>
+
+    <script>
+
+        document.getElementById('button').addEventListener('click', loadtext);
+
+
+        function loadtext(){
+            //console.log("Button clicked");
+            var xhr = new XMLHttpRequest();  //create xhr object
+
+            xhr.open('GET', 'sample.txt', true) //open this file
+
+            xhr.onload = function(){           //function
+                if (this.status === 200) {
+                    console.log(this.responseText);
+                }
+            }
+
+
+            xhr.send();   //send request
+        }
+    </script>
+</body>
+</html>

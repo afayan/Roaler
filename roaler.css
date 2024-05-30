@@ -1,0 +1,297 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f8fa;
+  }
+
+  header {
+    background-color: #e64e2f;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+  }
+
+  main {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .tweet {
+    border-bottom: 1px solid #e1e8ed;
+    padding: 10px;
+    display: flex;
+  }
+
+  .tweet img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .tweet-content {
+    flex: 1;
+    background-color: aqua;
+    padding: 10px;
+    margin: 10px;
+    margin-right: 400px;
+    width: 800px;
+  }
+
+  .message-info{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .usernametweet{
+    font-size: 13px;
+  }
+
+  .usernameTag{
+    color: #6c6c6c;
+    padding-left: 8px;
+  }
+
+
+  footer {
+  
+    padding: 10px;
+    background-color: #e64e2f;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 300;
+    height: 60px;
+  }
+
+
+.topbar{
+background-color: aqua;
+    display: flex;
+    position: absolute;
+    width: 100%;
+    margin-left: 0px;
+}
+
+.leftcol {
+  background-color: rgb(196, 255, 207);
+  width: 250px;
+  height: 100%;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+.centre {
+  margin-left: 250px;
+  background-color: pink;
+  z-index: 10;
+  /* width: calc(100% - 250px); */
+  height: auto;
+}
+
+.rightcol {
+  background-color: greenyellow;
+  right: 0;
+  top: 0;
+  position: fixed;
+  width: 400px; /* Adjust the width as needed */
+  height: 100%;
+}
+
+.leftbutton{
+  height: 45px;
+  margin: 10px;
+}
+
+#searchcolumn{
+  z-index: 999999;
+  position: absolute;
+  left: -300px;
+  top: 100px;
+  width: 300px;
+  height: 80%;
+  background-color: #01e1ff;
+  transition: ease-in 0.1s;
+}
+
+.profile-box {
+  max-width: 300px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+
+.profile-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.profile-profession {
+  font-size: 14px;
+  color: #555;
+}
+
+.chat{
+  width: 700px;
+  height: 100%;
+  margin-left: 250px;
+}
+
+.signupform{
+  background-color: #01e1ff;
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  padding: 40px;
+}
+
+.signupText{
+  padding: 20px;
+  margin: 30px;
+}
+
+#top{
+  background-color: #01e1ff;
+  padding: 30px;
+  padding-left: 200px;
+  display: flex;
+  flex-direction: row;
+}
+
+.profilepiclarge{
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  background-size: cover;
+}
+
+#bottom{
+  background-color: #555;
+  height: 60%;
+}
+
+.messageContent{
+  display: flex;
+  flex-direction: row;
+  background-color: #555;
+  height: 100%;
+  width: 100%; 
+}
+
+.friendSection{
+  background-color: #01e1ff;
+  width: 400px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatSection{
+  background-color: #e64e2f;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+}
+
+#alldms{
+  height: 100%;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.dm{
+  background-color: blue;
+  color: white;
+  border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px;
+  width: 300px;
+  height: max-content;
+  margin: 10px;
+  margin-left: 790px;
+  white-space: pre-wrap;
+}
+
+.mydm{
+  background-color: rgb(0, 255, 42);
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px;
+  width: 300px;
+  height: max-content;
+  margin: 10px;
+  white-space: pre-wrap;
+}
+
+#sendDMBar{
+  position: absolute;
+  bottom: 0px;
+  background-color: #555;
+  width: 100%;
+  /* padding: 20px; */
+  padding: 20px;
+  
+}
+
+#DMtoSend{
+  margin: 0px;
+  margin-bottom: -23px;
+  padding: 4px; 
+  border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 19px;
+}
+
+.sendButton{
+  padding: 10px;
+}
+
+.profilePicSmall{
+  object-fit: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  margin: 2px;
+  margin-right: 9px;
+}
+
+#profilepic{
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  margin: 10px;
+}
+
+#follow{
+  background-color: #e64e2f;
+  height: 50px;
+  width: 120px;
+  border: none;
+}
