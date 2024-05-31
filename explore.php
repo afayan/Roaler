@@ -7,8 +7,9 @@ include_once "header.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Explore</title>
     <link rel="stylesheet" href="roaler.css">
+    <link rel="stylesheet" href="roaler2.css">
 </head>
 <body style="margin-left: 250px; overflow:hidden; background-color:bisque; display:flex; flex-direction:row; background-color:gray">
 
@@ -58,7 +59,6 @@ include_once "header.php";
 
   <div class="card-header">
     <span class="loc">Loading</span>
-    <span class="date">March 13</span>
     <span id="humidity">Loading</span>
     <span id="wind">Loading</span>
   </div>
@@ -68,10 +68,18 @@ include_once "header.php";
   <div class="temp-scale">
     <span>Celcius</span>
   </div>
-
-
-
 </div>
+
+
+  <div style="padding: 20px; padding-bottom:0px;">
+  <input type="text" name="prompt" id="prompt">
+  <button id="GoogleSearch">Search</button>
+
+  </div>
+
+  <div id="promptResponse">Write a prompt to Generate</div>
+
+
 
 </div>
 
@@ -86,6 +94,57 @@ include_once "header.php";
 <div id="media"></div>
 </body>
 </html>
+
+<script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+  <script type="module">
+      import { GoogleGenerativeAI } from "@google/generative-ai";
+
+      // Fetch your API_KEY
+      const API_KEY = "AIzaSyDE9P2l92a_9v9FF4NzfiGbJnvBM8Hadgc";
+
+      // Access your API key (see "Set up your API key" above)
+      const genAI = new GoogleGenerativeAI(API_KEY);
+
+      // ...
+
+      // The Gemini 1.5 models are versatile and work with most use cases
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+
+      console.log("Gemini accessed")
+
+      document.getElementById('GoogleSearch').addEventListener('click', function() {
+
+        document.getElementById('promptResponse').textContent = 'generating...'
+        prompt = document.getElementById('prompt').value
+        run(prompt)
+      })
+
+
+
+
+      async function run(prompt) {
+  // The Gemini 1.5 models are versatile and work with both text-only and multimodal prompts
+
+      // const prompt = "Write a story about a magic backpack."
+
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = response.text();
+      console.log(text);
+      document.getElementById('promptResponse').textContent = text
+}
+
+
+
+      // ...
+</script>
+
 
 <script>
 
@@ -231,23 +290,39 @@ include_once "header.php";
 
       html = ' '
 
-      mediaObj.forEach(element => {
+      mediaObj.slice().reverse().forEach(element => {
         if (element.type === 'movie') {
 
           html += `<div class="mediaCard">
                 <div class="mediaCard-image" style="background-image: url('images/${element.image}');"></div>
                 <div class="newscard-content">
-                  <h2 class="newscard-title">${element.title}</h2>
+                  <h2 class="newscard-title">Movie - ${element.title}</h2>
                 </div>
               </div>
-              `
-          
+              `    
+        }
+
+
+        else if (element.type === 'song') {
+          html+= `<div class="songCard" onclick="window.location.href = '${element.url}'">
+        <img src="images/${element.image}" alt="pp" id="songPic">
+
+        <div style="display: flex; flex-direction:column">
+        <p>Song - ${element.title}</p>
+
+        <label class="container1">
+        <input type="checkbox">
+          <svg viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="play"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"></path></svg>
+          <svg viewBox="0 0 320 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="pause"><path d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"></path></svg></label>
+
+        </div>
+      </div>`
         }
       });
 
      media.innerHTML = html
 
     }
-
     
 </script>
+

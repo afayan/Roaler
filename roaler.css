@@ -249,7 +249,8 @@ background-color: aqua;
   padding: 10px;
   width: 300px;
   height: max-content;
-  margin: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
   margin-left: 790px;
   white-space: pre-wrap;
 }
@@ -262,7 +263,8 @@ background-color: aqua;
   padding: 10px;
   width: 300px;
   height: max-content;
-  margin: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
   white-space: pre-wrap;
 }
 
@@ -361,6 +363,7 @@ background-color: aqua;
 .weathercard {
   width: 300px;
   height: 200px;
+  min-height: 200px;
   margin: 20px;
   position: relative;
   padding: 25px;
@@ -378,6 +381,8 @@ background-color: aqua;
 .container {
   width: 250px;
   height: 250px;
+  min-height: 250px;
+
   position: absolute;
   right: -35px;
   top: -50px;
@@ -807,7 +812,7 @@ label:last-child span {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 20px;
+  border-radius: 16px;
   border:1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
@@ -816,3 +821,62 @@ label:last-child span {
   margin: 10px;
   padding: 10px;
 }
+
+/*------ Settings ------*/
+.container1 {
+  --color: #a5a5b0;
+  --size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  font-size: var(--size);
+  user-select: none;
+  fill: var(--color);
+  margin: 20px;
+}
+
+.container1 .play {
+  position: absolute;
+  animation: keyframes-fill .5s;
+}
+
+.container1 .pause {
+  position: absolute;
+  display: none;
+  animation: keyframes-fill .5s;
+}
+
+/* ------ On check event ------ */
+.container1 input:checked ~ .play {
+  display: none;
+}
+
+.container1 input:checked ~ .pause {
+  display: block;
+}
+
+/* ------ Hide the default checkbox ------ */
+.container1 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* ------ Animation ------ */
+@keyframes keyframes-fill {
+  0% {
+    transform: rotate(-180deg) scale(0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: rotate(-10deg) scale(1.2);
+  }
+}
+
+
+
