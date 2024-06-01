@@ -7,6 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="roaler.css">
+    <link rel="stylesheet" href="roaler2.css">
 </head>
 <body>
 <div id="searchcolumn">
@@ -17,6 +18,14 @@ session_start();
         </div>
 
 
+<div id="settings">
+  Settings
+  <button id="logout">Logout</button>
+  <button id="ep" onclick="window.location.href='editprofile.php?id=<?=$_SESSION['id'];?>'" >Edit profile</button>
+
+</div>
+
+
 <div class="leftcol">
           <h1>Roaler</h1>
           <button class="leftbutton" onclick="window.location.href='home.php'">Home</button>
@@ -24,7 +33,7 @@ session_start();
           <button class="leftbutton" onclick="window.location.href='explore.php'">Explore</button>
           <button class="leftbutton" onclick="window.location.href='inbox.php?id=<?=$_SESSION['id']?>'">Inbox</button>
           <button class="leftbutton" onclick="window.location.href='profile.php?id=<?=$_SESSION['id']?>'">Profile</button>
-          <button class="leftbutton">Settings</button>
+          <button class="leftbutton" id="settingsButton">Settings</button>
         </div>
 <script>
         var searchcolumn = document.getElementById('searchcolumn');
@@ -39,6 +48,19 @@ session_start();
 
             else{
             searchcolumn.style.left = "250px";
+            }
+        })
+
+        var settingsButton = document.getElementById('settingsButton');
+        // settingsButton.addEventListener('click', searchProfiles);
+       
+        settingsButton.addEventListener('click', function(){
+            if (settings.style.left == "250px") {
+              settings.style.left = "-300px";
+            }
+
+            else{
+              settings.style.left = "250px";
             }
         })
 
@@ -81,6 +103,17 @@ session_start();
           //var searchResults = sendAJAX(searchQuery);
           //console.log(searchResults);
         }
+
+
+        document.getElementById('logout').addEventListener('click',  function(){
+         
+          window.location.href = 'login.php';
+        })
+
+
+
+
+        
 
 </script>
 </body>

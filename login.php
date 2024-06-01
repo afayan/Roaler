@@ -17,6 +17,7 @@
         <!-- <input type="password" placeholder="retype password" id="password2" class="signupText"> -->
         <!-- <input type="text" placeholder="unique username" id="username" class="signupText"> -->
         <button type="button" id="login" class="signupText">Login</button>
+        <button type="button" id="loginWithRoaler" class="signupText" onclick="window.location.href='accounts.php'">Login with Roaler</button>
         <button type="button" class="signupText" onclick="window.location.href = 'signup.php'">New? Sign up</button>
         <p id="error"></p>
     </form>
@@ -43,6 +44,7 @@
 
         loginData.email = reqEmail.value;
         loginData.password = reqPassword.value;
+        loginData.stype = 'indirect';
         loginData.rtype = 'login';
 
         console.log(loginData);

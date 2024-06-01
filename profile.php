@@ -7,7 +7,7 @@ if (isset($_GET["id"])) {
     # code...
     $id = $_GET["id"];
 }
-echo $id;
+// echo $id;
 
 ?>
 
@@ -21,7 +21,7 @@ echo $id;
 <body style="margin-left: 250px;">
     <div id="top">
         <img id="profilePicLarge" class="profilepiclarge" src="images/blank-profile-picture-973460_960_720.webp" alt="profilepic">
-        <div style="display: flex; flex-direction:column">
+        <div style="display: flex; flex-direction:column; width:500px">
             <h3 id="usernameTag" style="padding-left: 60px; padding-right: 100px"></h3>
             <h1 id="nameTag" style="padding-left: 60px;">Name</h1>
             <p id="bio" style="padding-left: 60px;">hey hey</p>

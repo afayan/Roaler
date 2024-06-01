@@ -1,4 +1,6 @@
-
+<?php
+include 'header.php';
+?>
 
 <html lang="en">
 <head>
@@ -11,7 +13,7 @@
     <header>
         Roaler
         <?php
-        session_start();
+        // session_start();
         echo $_SESSION['loggedUsername'];
         ?>
       </header>
@@ -30,14 +32,14 @@
         </div>
     
 
-        <div class="leftcol">
+        <div class="leftcolumn">
           <h1>Roaler</h1>
-          <button class="leftbutton">Home</button>
+          <!-- <button class="leftbutton">Home</button>
           <button class="leftbutton" id="searchMenu">Search</button>
           <button class="leftbutton" onclick="window.location.href='explore.php'">Explore</button>
           <button class="leftbutton" onclick="window.location.href='inbox.php?id=<?=$_SESSION['id']?>'">Inbox</button>
           <button class="leftbutton" onclick="window.location.href='profile.php?id=<?=$_SESSION['id']?>'">Profile</button>
-          <button class="leftbutton">Settings</button>
+          <button class="leftbutton">Settings</button> -->
         </div>
 
         <div class="rightcol">
@@ -53,7 +55,6 @@
             <p class="bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam vel quae id aperiam sequi. Nesciunt similique quasi laudantium, explicabo cupiditate earum iusto nam ullam corporis ipsam dolores, nisi nobis veniam.</p>
         </div>
         
-          <button onclick="logout()">logout</button>
           <p>You might like</p>
           <div class="trends">
             <div class="recommProfiles">
@@ -82,6 +83,8 @@
         var sendButton = document.getElementById('sendMessage');
         var Roll = document.getElementById('Roll');
         var searchcolumn = document.getElementById('searchcolumn');
+        id = <?=$_SESSION['id'];?> ;
+
         
         var searchButton = document.getElementById('searchMenu');
         var search = document.getElementById('search');
@@ -161,8 +164,10 @@
             if (this.status == 200) {
               //console.log(this.responseText);
               //var resp = JSON.parse(this.responseText);
-              console.log(this.responseText);
+              // console.table(JSON.parse(this.responseText));
               //callback(resp);
+
+              work(JSON.parse(this.responseText))
 
             }
           }
@@ -173,16 +178,16 @@
         }
 
 
-        searchButton.addEventListener('click', function(){
+        // searchButton.addEventListener('click', function(){
 
-          if (searchcolumn.style.left == "250px") {
-            searchcolumn.style.left = "-300px";
-          }
+        //   if (searchcolumn.style.left == "250px") {
+        //     searchcolumn.style.left = "-300px";
+        //   }
 
-          else{
-            searchcolumn.style.left = "250px";
-          }
-        })
+        //   else{
+        //     searchcolumn.style.left = "250px";
+        //   }
+        // })
 
         function sendMessage(){
             var msg = chat.value;
@@ -217,16 +222,7 @@
         }
 
         //logout
-        function logout(){
-          var logout = {
-            rtype: 'logout'
-          }
-
-          sendAJAX(logout);
-
-          window.location.href = 'login.php';
-        }
-
+ 
         function renderMessages(messageArray) {
             // alert(messageArray);
 
@@ -242,7 +238,7 @@
             messageArray.slice().reverse().forEach(element => {
                 // console.log(messageArray.image);
 
-                 console.table(element)
+                //  console.table(element)
 
             html+=`<div class="tweet-content" onclick = "window.location.href = 'profile.php?id=${element.userid}' " >
             <strong class = "message-info"> 
@@ -310,6 +306,31 @@
         // function renderTrends(obj){
         //   console.table(obj)
         // }
+
+
+        function work(obj){
+          console.table(obj)
+
+          if (obj['ptype'] === 'config') {
+            
+
+            document.querySelector('.bio').textContent = obj[0].bio
+            document.querySelector('.profile-profession').textContent = obj[0].username
+
+          }
+
+
+
+          
+        }
+    
+        console.log(id)
+
+        config = {id: id, rtype: 'config'}
+        sendAJAX(config)
+
+
+        
     </script>
 </body>
 </html>

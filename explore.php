@@ -8,6 +8,7 @@ include_once "header.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore</title>
+    <!-- <link rel="icon" type="image/png" href="images/roalerLogo.png"> -->
     <link rel="stylesheet" href="roaler.css">
     <link rel="stylesheet" href="roaler2.css">
 </head>
@@ -79,7 +80,10 @@ include_once "header.php";
 
   <div id="promptResponse">Write a prompt to Generate</div>
 
-
+  <div id="gamebox">
+  Loading Games...
+  
+  </div>
 
 </div>
 
@@ -323,6 +327,49 @@ include_once "header.php";
      media.innerHTML = html
 
     }
-    
+
+
+    const data = null;
+
+xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener('readystatechange', function () {
+	if (this.readyState === this.DONE) {
+		// console.log(this.responseText);
+    gamesList = JSON.parse(this.responseText)
+    console.log(gamesList)
+
+
+    renderGames(gamesList)
+	}
+});
+
+  xhr.open('GET', 'https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc');
+  xhr.setRequestHeader('x-rapidapi-key', '290d4b190dmsh3dc1de8fbb81ebep18dafejsn4966092d19b3');
+  xhr.setRequestHeader('x-rapidapi-host', 'free-to-play-games-database.p.rapidapi.com');
+  xhr.send(data);
+
+function renderGames(gamesList){
+
+    html = ' '
+
+    for (let i = 0; i < 10; i++) {
+      const element = gamesList[i];
+      console.log(element)
+
+      html += `  
+      
+      <div style="justify-content: center;" onclick ="window.location.href='${element.game_url}'">
+        <img src="${element.thumbnail}" alt="game" class="gameIcons">
+        <p style="margin: 10px; max-width: 45px; overflow: hidden">${element.title}</p>
+      </div>`
+
+      
+    }
+
+    document.getElementById('gamebox').innerHTML = html
+}
+
 </script>
 

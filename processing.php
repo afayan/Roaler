@@ -21,33 +21,62 @@ switch ($type) {
 
         
         // header("Location:roaler.php");
-        $email = $myData['email'];
-        $password = $myData['password'];
-
-        $login = "select * from users where email = '$email' and password = '$password';";
-
-        $return = mysqli_query($conn, $login);
-
-
-        if (mysqli_num_rows($return) == 0) {
             # code...
-            echo false;
-        }
+            $email = $myData['email'];
+            $password = $myData['password'];
+    
+            $login = "select * from users where email = '$email' and password = '$password';";
+    
+            $return = mysqli_query($conn, $login);
+    
+    
+            if (mysqli_num_rows($return) == 0) {
+                # code...
+                echo false;
+            }
+    
+            //we have to validate login
+    
+            else {
+                session_start();
+                $_SESSION['loggedMail'] = $myData['email'];
+    
+                $row = mysqli_fetch_assoc($return);
+                $_SESSION['loggedUsername'] = $row['username'];
+                $_SESSION['id'] = $row['userid'];
+                $_SESSION['name'] = $row['name'];
+                echo true;
+            }
+   
+        break;
 
-        //we have to validate login
+        case 'directlogin':
+            # code...
 
-        else {
+            $email = $myData['email'];
+            $q = "select * from users where email = '$email'";
             session_start();
             $_SESSION['loggedMail'] = $myData['email'];
 
-            $row = mysqli_fetch_assoc($return);
-            $_SESSION['loggedUsername'] = $row['username'];
-            $_SESSION['id'] = $row['userid'];
-            $_SESSION['name'] = $row['name'];
-            echo true;
-        }
-        
+            $a = convertSqliToArray(mysqli_query($conn, $q));
+            // $_SESSION['loggedUsername'] = $a['username'];
+            // $_SESSION['id'] = $a['userid'];
+            // $_SESSION['name'] = $a['name'];
+            echo json_encode($a);
 
+            
+            break;
+
+
+    case 'config':
+        # code...
+        $myId = $myData['id'];
+        $q = "select * from users where userid = $myId";
+        
+        $a  = convertSqliToArray(mysqli_query($conn, $q));
+        $a['ptype'] = 'config';
+
+        echo json_encode($a);
         break;
 
     case 'signup':
@@ -265,9 +294,19 @@ switch ($type) {
         }
 
 
-        mysqli_query($conn, $q);
+        if (!checkUsername($username, $conn)) {
+            # code...
+            echo "username taken";
+        }
 
-        echo "updated";
+        else{
+            mysqli_query($conn, $q);
+
+            echo "updated";
+        }
+
+
+      
         // $bio =  $myData
         break;
 
@@ -310,6 +349,12 @@ switch ($type) {
 
         break;
 
+    case 'accounts':
+        $q = "select username, image, userid,email from users;";
+
+        echo convertToJSON(mysqli_query($conn, $q));
+        break;
+
     default:
         # code...
         echo "no rtype given";
@@ -337,6 +382,38 @@ function convertToJSON($sqli){
 
     $arrayJSON = json_encode($myArray);
     return $arrayJSON;
+}
+
+function checkUsername($username, $conn){
+    $q = "select * from users where username = '$username'";
+
+        $return = mysqli_query($conn, $q);
+
+    if (mysqli_num_rows($return) == 0) {
+        # code...
+        return true;
+    }
+
+    else {
+        return false; 
+    }
+}
+
+
+
+function checkEmail($email, $conn){
+    $q = "select * from users where email = '$email'";
+
+    $return = mysqli_query($conn, $q);
+
+if (mysqli_num_rows($return) == 0) {
+    # code...
+    return true;
+}
+
+else {
+    return false; 
+}
 }
 
     ?>

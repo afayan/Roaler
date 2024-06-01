@@ -128,7 +128,7 @@ background-color: aqua;
 
 #searchcolumn{
   z-index: 999999;
-  position: absolute;
+  position: fixed;
   left: -300px;
   top: 100px;
   width: 300px;
