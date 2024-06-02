@@ -166,10 +166,10 @@ background-color: aqua;
   top: 0px;
   width: 350px;
   height: 100%;
-  background-color:#FF5757
-  ;
+  background-color:#FF5757;
   transition: ease-in 0.1s;
   padding: 10px;
+  overflow-y: scroll;
 }
 
 .profile-box {
@@ -764,7 +764,7 @@ background-color: aqua;
 
 #addConfirm{
   position: absolute;
-  background-color: #0eff01;
+  background-color:  #FF5757;
   display: flex;
   height: 200px;
   width: 300px;
@@ -772,7 +772,7 @@ background-color: aqua;
   padding: 20px;
   left: 40%;
   top: 1000px;
-  transition: 0.s ease-out;
+  transition: 0.1s ease-out;
   align-items: center;
 
   /* display: none; */
@@ -802,10 +802,10 @@ background-color: aqua;
 }
 
 .mydict input[type="radio"]:checked + span {
-  box-shadow: 0 0 0 0.0625em #0043ed;
-  background-color: #dee7ff;
+  box-shadow: 0 0 0 0.0625em #ffd52f;
+  background-color: #f3e992;
   z-index: 1;
-  color: #0043ed;
+  color: #000000;
 }
 
 label span {

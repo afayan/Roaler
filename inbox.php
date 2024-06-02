@@ -34,8 +34,13 @@ if (isset($_GET["id"])) {
                 
 
                 <div id="blocker"   style="position: fixed; height: 100%; width: 1143px; top: 67px; right: 0px; z-index:9999;     background-color: #FF5757;
-; font-size:70px">
-                    start messaging!
+                    ; font-size:70px;">
+                    <img src="images/chat_48dp_FILL0_wght200_GRAD0_opsz48.png" alt=""
+                    style="padding-left: 40%;padding-top:20%;">
+                    <h1 style="font-size:50px; margin-left:35%; color:white;
+                    font-weight:10;
+                    
+                    ">Start messaging</h1>
                 </div>
 
                 <div id="alldms">

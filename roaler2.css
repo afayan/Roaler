@@ -257,7 +257,6 @@
     background-repeat: no-repeat;
     bottom: 10px;
     transition: 0.3s;
-   
 }
 
 #sendDM:hover{
@@ -291,3 +290,15 @@
     background-color: #FFDE59;
 
 }
+
+.changeProfileInput{
+    padding: 15px;
+}
+
+.uploadBox{
+    width: 600px;
+    margin: 30px;
+    padding: 10px;
+    margin-left: 0px;
+}
+

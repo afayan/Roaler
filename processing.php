@@ -296,13 +296,13 @@ switch ($type) {
 
         if (!checkUsername($username,$id , $conn)) {
             # code...
-            echo "username taken";
+            echo false;
         }
 
         else{
             mysqli_query($conn, $q);
 
-            echo "updated";
+            echo true;
         }
 
 
@@ -330,6 +330,7 @@ switch ($type) {
 
     case 'uploadMedia':
         # code...
+
         echo "added media";
         $title = $myData['name'];
         $image = $myData['fileInfo'];
@@ -339,6 +340,8 @@ switch ($type) {
         $q = "insert into media(title, type, image, url) values ('$title', '$type', '$image', '$url');";
 
         mysqli_query($conn, $q);
+
+        echo true;
         break;
 
     case 'getMedia':

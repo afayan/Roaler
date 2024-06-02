@@ -16,20 +16,73 @@ if (isset($_GET["id"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body style="background-color: grey; margin-left: 250px;">
-    <h1>username</h1>
-    <input type="text" id="newUsername">
+<body style="background-color: grey; margin-left: 250px;
+display:flex;
+flex-direction:row;
+">
 
-    <h1>Name</h1>
-    <input type="text" id="newName">
+<div style="margin: 100px; display:flex; flex-direction:column;">
+    <h1 style="
+    font-weight:10;
+    height: 68px;
+    text-align: center;
+    font-size: 40px;
+    text-align: left; 
+    padding:0px;
+    margin:0px  ;
+    margin-top:30px;
 
-    <h1>Bio</h1>
-    <textarea name="bio" id="bio"></textarea>
+    ">Username</h1>
+    <input type="text" id="newUsername" class="changeProfileInput" >
 
-    <h1>Upload profile pic</h1>
-    <input type="file" id="getProfilePic">
+    <h1 style="
+    
+    font-weight:10;
+    height: 68px;
+    text-align: center;
+    font-size: 40px;
+    text-align: left;
+    margin:0px ; 
+    margin-top:30px;
+  
+    ">Name</h1>
+    <input type="text" id="newName"  class="changeProfileInput">
 
-    <button id="save">Save changes</button>
+    <h1 style="
+    font-weight:10;
+    text-align: center;
+    font-size: 40px;
+    text-align: left;
+    margin:0px  ;
+    margin-top:30px;
+
+   
+    ">Bio</h1>
+    <textarea name="bio" id="bio" class="changeProfileInput" rows="5"></textarea>
+    <button id="save" class="signupText">Save changes</button>
+
+
+</div>
+
+<div style="margin: 100px; display:flex; flex-direction:column;">
+<h1 style="
+    font-weight:10;
+    height: 68px;
+    text-align: center;
+    font-size: 40px;
+    text-align: left;
+    margin:0px  ;
+    margin-top:30px;
+
+  
+    ">Upload profile pic</h1>
+<img src="images/blank-profile-picture-973460_960_720.webp" class="profilepicLarge" id="changeProfpic" alt="">
+    <input type="file" id="getProfilePic" >
+
+
+</div>
+    
+
 
 </body>
 </html>
@@ -58,6 +111,7 @@ if (isset($_GET["id"])) {
             document.getElementById('newUsername').value = res[0].username
             document.getElementById('newName').value = res[0].name
             document.getElementById('bio').value = res[0].bio
+            document.getElementById('changeProfpic').src = "images/"+res[0].image
 
             // document.getElementById('bio').value = res[0].bio
         }
@@ -109,6 +163,14 @@ if (isset($_GET["id"])) {
             xhr.onload = function() {
                 if (this.status === 200) {
                     console.log(this.responseText)
+
+                    if (this.responseText) {
+                        alert("Changes saved")
+                    }
+
+                    else{
+                        alert("username already taken")
+                    }
                 }
             }
 
