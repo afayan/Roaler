@@ -15,15 +15,16 @@ if (isset($_GET["id"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inbox</title>
     <link rel="stylesheet" href="roaler.css">
+    <link rel="stylesheet" href="roaler2.css">
 </head>
 <body style="margin-left: 250px; overflow:hidden">
-    <h1 style="padding: 20px;"><?=$_SESSION['loggedUsername']?>'s inbox</h1>
+    <h1 style="padding: 20px;" class="header"><?=$_SESSION['loggedUsername']?>'s inbox</h1>
     <div class="messageContent">
         <div class="friendSection">
            
         </div>
         <div class="chatSection">
-            <div style="display: flex; flex-direction:row">
+            <div style="display: flex; flex-direction:row;" id="chatHeader">
 
                 <img id="profilepic" src="images/090cf2101b1467c1e547e0e08aa9a965.jpg" alt="prof">
                 <h1 id="personToDM" style="margin-left: 10px;"> 
@@ -32,7 +33,8 @@ if (isset($_GET["id"])) {
             </div>
                 
 
-                <div id="blocker"   style="position: fixed; height: 100%; width: 1143px; top: 99px; right: 0px; z-index:9999; background-color:aqua; font-size:70px">
+                <div id="blocker"   style="position: fixed; height: 100%; width: 1143px; top: 67px; right: 0px; z-index:9999;     background-color: #FF5757;
+; font-size:70px">
                     start messaging!
                 </div>
 
@@ -42,7 +44,8 @@ if (isset($_GET["id"])) {
                 <div id="sendDMBar">
                     <!-- <input type="text" id="DMtoSend" style="padding: 10px;"> -->
                     <textarea name="dm" id="DMtoSend"  rows="2" cols="94"></textarea>
-                    <button id="sendDM" style="padding: 10px; margin-top: -90px; margin-left:20px">Send message</button>
+                    <button id="sendDM" style="padding: 10px; margin-top: -90px; margin-left:20px">
+                </button>
                 </div>
         </div>
     </div>
@@ -71,6 +74,13 @@ if (isset($_GET["id"])) {
             var DMtoSend = document.getElementById('DMtoSend')
             console.log(DMtoSend.value)
 
+
+            if (DMtoSend.value.trim() === '') {
+                console.log("empty dm")
+            }
+
+            else{
+
             var dmdata = {}
             dmdata.rtype = "DM"
             dmdata.stype = "new"
@@ -97,6 +107,7 @@ if (isset($_GET["id"])) {
 
             console.table(dmdata)
             xhr.send(JSON.stringify(dmdata))
+        }
         })
 
         function renderFriends(){

@@ -4,15 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roaler Signup</title>
     <link rel="stylesheet" href="roaler.css">
+    <link rel="stylesheet" href="roaler2.css">
 </head>
-<body style="display: flex; flex-direction:row">
+<body style="display: flex; flex-direction:row ;background-color: #FFDE59;
+">
 
-<div class="logo" style="width: 50%; background-color:brown"></div>
+<div class="logo" ></div>
 
 
 
     <form id="inputform" class="signupform">
-        <h1>Sign up to Roaler</h1>
+        <h1 style="margin-top: 0px;">Sign up to Roaler</h1>
 
         <input type="text" placeholder="name" id="name" class="signupText">
         <input type="password" placeholder="password" id="password" class="signupText">
@@ -48,6 +50,15 @@
         var username = document.getElementById('username').value;
         var email = document.getElementById('email').value
 
+        if (name.trim() === '' || password.trim() === '' || username.trim() === '' || email.trim() === '') {
+            console.log("Blank")
+        }
+
+        else{
+
+       
+
+
         var creds = {
         };
 
@@ -75,7 +86,7 @@
         }
 
         xhr.send(JSON.stringify(creds))
-
+    }
     }
 
     else{

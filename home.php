@@ -11,11 +11,7 @@ include 'header.php';
 </head>
 <body>
     <header>
-        Roaler
-        <?php
-        // session_start();
-        echo $_SESSION['loggedUsername'];
-        ?>
+        Home
       </header>
 
       <div class="centre">
@@ -24,13 +20,6 @@ include 'header.php';
       </div>
         <!-- Additional tweets go here -->
 
-        <div id="searchcolumn">
-          search
-          <input type="search" id="searchbar">
-          <button id="search">Search</button>
-          <div class="searchresults" id="searchresults"></div>
-        </div>
-    
 
         <div class="leftcolumn">
           <h1>Roaler</h1>
@@ -46,16 +35,19 @@ include 'header.php';
 
           
 
-          <div class="profile-box">
+          <div class="profile-box" onclick="window.location.href = 'profile.php?id=<?=$_SESSION['id']?>'">
             <div class="profile-name"><?php
             echo $_SESSION['name'];
             ?>
           </div>
-            <div class="profile-profession">Software Developer</div>
+            <div>
+            <img src="images/blank-profile-picture-973460_960_720.webp" alt="" id="profilepic" class="mainpagepp">  
+            <p class="profile-profession">Software Developer</p>
+          </div>
             <p class="bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam vel quae id aperiam sequi. Nesciunt similique quasi laudantium, explicabo cupiditate earum iusto nam ullam corporis ipsam dolores, nisi nobis veniam.</p>
         </div>
         
-          <p>You might like</p>
+          <p style="margin-left: 20px;">You might like</p>
           <div class="trends">
             <div class="recommProfiles">
               <img class="profilePicSmall" src="images/090cf2101b1467c1e547e0e08aa9a965.jpg" alt="">
@@ -73,7 +65,9 @@ include 'header.php';
       <footer>
       <form id="sendMesg">
         <textarea name="chat1" id="chat" class="chat"></textarea>
-        <button class="sendbutton" type="button" name="sendbutton1" id="sendMessage">Send</button>
+        <button class="sendbutton" type="button" name="sendbutton1" id="sendMessage">
+          <img src="images/send_24dp_FILL0_wght300_GRAD0_opsz24 (1).png" alt="" style="width: 35px;">
+        </button>
         </form>
         
       </footer>
@@ -92,7 +86,7 @@ include 'header.php';
 
         sendButton.addEventListener('click', sendMessage);
 
-        search.addEventListener('click', searchProfiles);
+        // search.addEventListener('click', searchProfiles);
 
         var defaultRender = {};
         defaultRender.rtype = 'defo';
@@ -113,46 +107,46 @@ include 'header.php';
             xhr.send(JSON.stringify(defaultRender));
           //end
 
-        function searchProfiles(){
-         // console.log("so u wanna search?");
-          var searchQuery = {};
-          let id = <?= $_SESSION['id']?>
+        // function searchProfiles(){
+        //  // console.log("so u wanna search?");
+        //   var searchQuery = {};
+        //   let id = <?= $_SESSION['id']?>
 
-          var profileToSearch = document.getElementById('searchbar').value;
+        //   var profileToSearch = document.getElementById('searchbar').value;
 
-          console.log(profileToSearch);
+        //   console.log(profileToSearch);
 
-          searchQuery.query = profileToSearch;
-          searchQuery.rtype = 'search';
+        //   searchQuery.query = profileToSearch;
+        //   searchQuery.rtype = 'search';
 
 
-          xhr = new XMLHttpRequest();
+        //   xhr = new XMLHttpRequest();
 
-          xhr.open('POST', 'processing.php', true);
+        //   xhr.open('POST', 'processing.php', true);
 
-          xhr.onload = function(){
-            if (this.status == 200) {
-              //console.log(this.responseText);
-              var resp = JSON.parse(this.responseText);
-              console.log(resp);
-              //callback(resp);
-              html2 = '';
+        //   xhr.onload = function(){
+        //     if (this.status == 200) {
+        //       //console.log(this.responseText);
+        //       var resp = JSON.parse(this.responseText);
+        //       console.log(resp);
+        //       // //callback(resp);
+        //       // html2 = '';
 
-              resp.forEach(element2 => {
-              html2+= `<a href="profile.php?id=${element2.userid}"> <p>${element2.name}           
-              </p></a>`;
-              });
+        //       // resp.forEach(element2 => {
+        //       // html2+= `<a href="profile.php?id=${element2.userid}"> <p>${element2.name}           
+        //       // </p></a>`;
+        //       });
 
-          document.getElementById('searchresults').innerHTML= html2;
+        //   document.getElementById('searchresults').innerHTML= html2;
 
-            }
-          }
+        //     }
+        //   }
 
-          xhr.send(JSON.stringify(searchQuery));
+        //   xhr.send(JSON.stringify(searchQuery));
 
-          //var searchResults = sendAJAX(searchQuery);
-          //console.log(searchResults);
-        }
+        //   //var searchResults = sendAJAX(searchQuery);
+        //   //console.log(searchResults);
+        // }
 
         function sendAJAX(objtosend) {
 
@@ -192,7 +186,16 @@ include 'header.php';
         function sendMessage(){
             var msg = chat.value;
             console.log(msg);
-            chat.value = '';
+
+            if (msg.trim() === '') {
+              console.log("empty msg box")
+            }
+
+            else{
+
+          
+
+
 
             var msgdata = {};
             // msgdata.sender = '<?php //echo $_SESSION['name'];?>';
@@ -218,6 +221,10 @@ include 'header.php';
 
             xhr.send(JSON.stringify(msgdata));
             
+          }
+
+
+          chat.value = '';
 
         }
 
@@ -316,6 +323,7 @@ include 'header.php';
 
             document.querySelector('.bio').textContent = obj[0].bio
             document.querySelector('.profile-profession').textContent = obj[0].username
+            document.querySelector('.mainpagepp').src = "images/"+ obj[0].image
 
           }
 

@@ -11,23 +11,25 @@ session_start();
 </head>
 <body>
 <div id="searchcolumn">
-          search
+          <h1>Search</h1>
           <input type="search" id="searchbar">
           <button id="search">Search</button>
-          <div class="searchresults" id="searchresults"></div>
+          <div class="searchresults" id="searchresults" style="margin-top: 10px;">
+
+          </div>
         </div>
 
 
 <div id="settings">
-  Settings
-  <button id="logout">Logout</button>
-  <button id="ep" onclick="window.location.href='editprofile.php?id=<?=$_SESSION['id'];?>'" >Edit profile</button>
+  <h1>Settings</h1>
+  <button id="ep" class="settingsButtons" onclick="window.location.href='editprofile.php?id=<?=$_SESSION['id'];?>'" >Edit profile</button>
+  <button id="logout" class="settingsButtons">Logout</button>
 
 </div>
 
 
 <div class="leftcol">
-          <h1>Roaler</h1>
+          <img src="images/roalerLogo.png" alt="" style="width: 90px; margin:20px ; border-radius:20px"> 
           <button class="leftbutton" onclick="window.location.href='home.php'">Home</button>
           <button class="leftbutton" id="searchMenu">Search</button>
           <button class="leftbutton" onclick="window.location.href='explore.php'">Explore</button>
@@ -43,7 +45,7 @@ session_start();
        
         searchButton.addEventListener('click', function(){
             if (searchcolumn.style.left == "250px") {
-            searchcolumn.style.left = "-300px";
+            searchcolumn.style.left = "-400px";
             }
 
             else{
@@ -56,7 +58,7 @@ session_start();
        
         settingsButton.addEventListener('click', function(){
             if (settings.style.left == "250px") {
-              settings.style.left = "-300px";
+              settings.style.left = "-400px";
             }
 
             else{
@@ -89,8 +91,10 @@ session_start();
               html2 = '';
 
               resp.forEach(element2 => {
-              html2+= `<a href="profile.php?id=${element2.userid}"> <p>${element2.name}           
-              </p></a>`;
+              html2+= `<div class="searchedProfiles" onclick="window.location.href = 'profile.php?id=${element2.userid}' ">
+              <img src="images/${element2.image}" alt="" class="profilePicSmall">
+              <p>${element2.name}</p>
+            </div>`;
               });
 
           document.getElementById('searchresults').innerHTML= html2;

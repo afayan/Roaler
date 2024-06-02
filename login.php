@@ -4,10 +4,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roaler Login</title>
     <link rel="stylesheet" href="roaler.css">
+    <link rel="stylesheet" href="roaler2.css">
 </head>
-<body style="display: flex; flex-direction:row">
+<body style="display: flex; flex-direction:row;     background-color: #FFDE59;
+">
 
-<div class="logo" style="width: 50%; background-color:brown"></div>
+<div class="logo" ></div>
 
     <form id="inputform" class="signupform">
         <h1>Sign in to Roaler</h1>
@@ -17,7 +19,7 @@
         <!-- <input type="password" placeholder="retype password" id="password2" class="signupText"> -->
         <!-- <input type="text" placeholder="unique username" id="username" class="signupText"> -->
         <button type="button" id="login" class="signupText">Login</button>
-        <button type="button" id="loginWithRoaler" class="signupText" onclick="window.location.href='accounts.php'">Login with Roaler</button>
+        <button type="button" id="loginWithRoaler" class="signupText" onclick="window.location.href='accounts.php'">continue with Roaler</button>
         <button type="button" class="signupText" onclick="window.location.href = 'signup.php'">New? Sign up</button>
         <p id="error"></p>
     </form>

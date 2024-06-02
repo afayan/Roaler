@@ -6,11 +6,16 @@ body {
   }
 
   header {
-    background-color: #e64e2f;
+    /* background-color: #FFDE59; */
+    height: 68px;
     padding: 10px;
-    color: white;
+    background-color: rgb(221, 221, 221);
     text-align: center;
-    font-size: 24px;
+    font-size: 40px;
+    padding-top: 20px;
+    text-align: left;
+    margin-left: 250px;
+    color: #FF5757;
   }
 
   main {
@@ -26,11 +31,12 @@ body {
     border-bottom: 1px solid #e1e8ed;
     padding: 10px;
     display: flex;
-    background-color: #e1e8ed;
+    background-color:#FFDE59;
     width: 600px;
     margin: 10px;
     margin-bottom: 0px;
     border-radius: 7px;
+    border: none;
   }
 
   .tweet img {
@@ -42,17 +48,23 @@ body {
 
   .tweet-content {
     flex: 1;
-    background-color: aqua;
-    padding: 10px;
+    background-color: #FFDE59;
+    padding: 15px;
     margin: 10px;
-    margin-right: 400px;
-    width: 800px;
+    margin-right: 0px;
+    width: 68.5%;
+    border-radius: 10px;
+    box-shadow: inset;
+
+    border-radius: 10px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
   }
 
   .tweetText{
     white-space: pre-wrap;
     height: max-content;
-    padding: 2px;
+    padding: 0px;
     margin: 0px;
   }
 
@@ -74,7 +86,7 @@ body {
   footer {
   
     padding: 10px;
-    background-color: #e64e2f;
+    background-color: #FF5757;
     color: white;
     position: fixed;
     bottom: 0;
@@ -93,7 +105,7 @@ background-color: aqua;
 }
 
 .leftcol {
-  background-color: rgb(196, 255, 207);
+  /* background-color: #FFDE59; */
   width: 250px;
   height: 100%;
   z-index: 9;
@@ -102,39 +114,62 @@ background-color: aqua;
   position: fixed;
   display: flex;
   flex-direction: column;
+  background-color: rgb(221, 221, 221);
+
 }
 
 .centre {
   margin-left: 250px;
-  background-color: pink;
+  padding-top: 5px;
   z-index: 10;
   /* width: calc(100% - 250px); */
   height: auto;
+  background-color: #ffffff;
 }
 
 .rightcol {
-  background-color: greenyellow;
+  /* background-color: #FFDE59; */
   right: 0;
   top: 0;
   position: fixed;
   width: 400px; /* Adjust the width as needed */
   height: 100%;
+  background-color: rgb(221, 221, 221);
+
 }
 
 .leftbutton{
-  height: 45px;
-  margin: 10px;
+  height: 65px;
+  /* margin: 10px; */
+  font-size: large;
+  border: none;
+  /* background-color:#FFDE59; */
+  justify-content: flex-start;
+  padding-left: 10px;
+  transition: 0.5s;
+  color: #FF5757;
+  background-color: rgb(221, 221, 221);
+
+
+}
+
+.leftbutton:hover{
+  background-color: #FF5757;
+  color: #FFDE59;
+
 }
 
 #searchcolumn{
   z-index: 999999;
   position: fixed;
-  left: -300px;
-  top: 100px;
-  width: 300px;
-  height: 80%;
-  background-color: #01e1ff;
+  left: -400px;
+  top: 0px;
+  width: 350px;
+  height: 100%;
+  background-color:#FF5757
+  ;
   transition: ease-in 0.1s;
+  padding: 10px;
 }
 
 .profile-box {
@@ -145,6 +180,10 @@ background-color: aqua;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+}
+
+.profile-box:hover{
+  cursor: pointer;
 }
 
 .profile-img {
@@ -168,32 +207,57 @@ background-color: aqua;
 
 .chat{
   width: 700px;
-  height: 100%;
+  height: 90%;
   margin-left: 250px;
   font-size: 18px;
   padding: 5px;
   font-family: Arial, Helvetica, sans-serif;
+  border: none;
+  border-radius: 8px;
+  margin-top: 4px;
+  transition: 0.3s;
+}
+
+.chat:focus{
+  border: 2px;
+  box-shadow: inset;
 }
 
 .signupform{
-  background-color: #01e1ff;
+  background-color:#FF5757;
   display: flex;
   flex-direction: column;
   width: 600px;
   padding: 40px;
+  margin: 100px;
+  margin-left: 0;
 }
 
 .signupText{
   padding: 16px;
   margin: 20px;
+  margin-top: 16px;
+  margin-bottom: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  border: none;
+  background-color: rgb(221, 221, 221);
+  transition: 0.3s;
+}
+
+.signupText:hover{
+  background-color: white;
+  color: #FF5757;
 }
 
 #top{
-  background-color: #01e1ff;
+  background-color:#dee7ff;
   padding: 30px;
   padding-left: 200px;
   display: flex;
   flex-direction: row;
+  background-color: rgb(221, 221, 221);
+
 }
 
 .profilepiclarge{
@@ -204,7 +268,6 @@ background-color: aqua;
 }
 
 #bottom{
-  background-color: #555;
   height: max-content;
   padding-bottom: 10px;
 }
@@ -218,11 +281,12 @@ background-color: aqua;
 }
 
 .friendSection{
-  background-color: #01e1ff;
   width: 400px;
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+  background-color: #FF5757;
 }
 
 .chatSection{
@@ -239,10 +303,12 @@ background-color: aqua;
   width: 100%;
   flex-direction: column;
   overflow-y: auto;
+  background-color: rgb(221, 221, 221);
+
 }
 
 .dm{
-  background-color: blue;
+  background-color:#FF5757;
   color: white;
   border-radius: 10px;
   font-family: Arial, Helvetica, sans-serif;
@@ -256,7 +322,7 @@ background-color: aqua;
 }
 
 .mydm{
-  background-color: rgb(0, 255, 42);
+  background-color: rgb(167, 167, 167);
   color: rgb(0, 0, 0);
   border-radius: 10px;
   font-family: Arial, Helvetica, sans-serif;
@@ -270,12 +336,13 @@ background-color: aqua;
 
 #sendDMBar{
   position: absolute;
-  bottom: 0px;
+  bottom: 15px;
   background-color: #555;
   width: 100%;
   /* padding: 20px; */
   padding: 20px;
-  
+  padding-top: -20px;
+  margin-top: -40px;
 }
 
 #DMtoSend{
@@ -289,6 +356,21 @@ background-color: aqua;
 
 .sendButton{
   padding: 10px;
+  padding-top: 8px;
+  position: fixed;
+  margin: 10px;
+  margin-top: 6px;
+  border: none;
+  border-radius: 10px;
+  height: 50px;
+  width: 50px;
+  background-color: #FFDE59;
+  transition: 0.3s;
+}
+
+.sendButton:hover{
+  cursor: pointer;
+  background-color:#dee7ff;
 }
 
 .profilePicSmall{
@@ -308,7 +390,8 @@ background-color: aqua;
 }
 
 #follow{
-  background-color: #e64e2f;
+  background-color:  #FF5757;
+  color: white;
   height: 50px;
   width: 120px;
   border: none;
@@ -324,10 +407,16 @@ background-color: aqua;
 .recommProfiles{
   display: flex;
   flex-direction: row;
-  background-color: yellow;
   margin: 5px;
   padding: 10px;
   transition: 1s;
+  margin-left: 10px;
+
+
+  background-color:#FFDE59;
+ 
+  border-radius: 10px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .recommProfiles:hover{
@@ -341,7 +430,7 @@ background-color: aqua;
 
 
 #personalised{
-  background-color: #01e1ff;
+  background-color: rgb(221, 221, 221);
   width: max-content;
   overflow-y: scroll;
   display: flex;
@@ -351,7 +440,7 @@ background-color: aqua;
 
 
 #media{
-  background-color: rgb(73, 73, 73);
+  background-color: rgb(221, 221, 221);
   flex: 1;
   overflow-y: scroll;
   display: flex;
@@ -546,7 +635,7 @@ background-color: aqua;
 /* newscard starts */
 
 #news{
-  background-color: #575757;
+  background-color: rgb(221, 221, 221);
   flex: 2;
   overflow-y: auto;
   display: flex;
@@ -566,11 +655,14 @@ background-color: aqua;
   
 
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 20px;
-  border:1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    background-color: #FFDE59;
+   
+
 }
 
 .newscard:hover{
@@ -590,9 +682,8 @@ background-color: aqua;
 
 .newscard-title {
   margin: 0;
-  font-size: 20px;
-  color: #ffffff;
-}
+  font-size: 17px;
+  color: black;}
 
 .newscard p {
   margin: 8px 0 0;
@@ -812,9 +903,11 @@ label:last-child span {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 16px;
+  border-radius: 20px;
   border:1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  background-color: #FFDE59;
+
 }
 
 #contribute{

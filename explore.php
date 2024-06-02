@@ -312,7 +312,7 @@ include_once "header.php";
         <img src="images/${element.image}" alt="pp" id="songPic">
 
         <div style="display: flex; flex-direction:column">
-        <p>Song - ${element.title}</p>
+        <p style= "overflow: hidden; width:170px; height: 20px ">Song - ${element.title}</p>
 
         <label class="container1">
         <input type="checkbox">
@@ -362,7 +362,7 @@ function renderGames(gamesList){
       
       <div style="justify-content: center;" onclick ="window.location.href='${element.game_url}'">
         <img src="${element.thumbnail}" alt="game" class="gameIcons">
-        <p style="margin: 10px; max-width: 45px; overflow: hidden">${element.title}</p>
+        <p style="margin: 10px; max-width: 75px; overflow: hidden">${element.title}</p>
       </div>`
 
       

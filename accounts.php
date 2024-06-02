@@ -7,11 +7,36 @@
     <link rel="stylesheet" href="roaler.css">
     <link rel="stylesheet" href="roaler2.css">
 </head>
-<body>
+<body style = "background-color: #FFDE59;
+margin-left: 40%;
+">
+
+<div style="display: flex; flex-direction:row ;   color: #FF5757;" >
+<img src="images/roalerLogo.png" alt="" style="
+    width:40px;
+    height:40px;
+    margin: 10px;
+    margin-top: 18px;
+    margin-right: 25px;
+    border-radius:3px;
+    padding:0px;
+    font-family:Arial, Helvetica, sans-serif;
+  
+    ">
+
+   
+    <h1 style="padding: 0px;"> Welcome to Roaler  </h1>
+
+
+</div>
+
+    <h2>Choose account</h2>
+
+    
     <div id="accountsRoll">
 
 
-    <button class="accounts" class="accounts" value="accname">
+    <button class="accounts" value="accname">
         <img src="images/090cf2101b1467c1e547e0e08aa9a965.jpg" alt="" id="profilepic">
         <p>Account name</p>
     </button>
@@ -45,7 +70,7 @@
         users.forEach(element => {
             html += ` <button class="accounts" mail="${element.email}">
         <img src="images/${element.image}" alt="pp" id="profilepic">
-        <p>${element.username}</p>
+        <p class = "accountName" >${element.username}</p>
         </button>`
         });
 

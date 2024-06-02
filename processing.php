@@ -94,7 +94,7 @@ switch ($type) {
             
             echo "Data received: Name - $name, Password - $password";
             
-            $insertvals = "insert into users(username, email, name, password) values ('$username', '$email','$name', '$password');";
+            $insertvals = "insert into users(username, email, name, password, image) values ('$username', '$email','$name', '$password', 'blank-profile-picture-973460_960_720.webp');";
             mysqli_query($conn, $insertvals);
             
         }catch(Exception $e){
@@ -294,7 +294,7 @@ switch ($type) {
         }
 
 
-        if (!checkUsername($username, $conn)) {
+        if (!checkUsername($username,$id , $conn)) {
             # code...
             echo "username taken";
         }
@@ -384,8 +384,8 @@ function convertToJSON($sqli){
     return $arrayJSON;
 }
 
-function checkUsername($username, $conn){
-    $q = "select * from users where username = '$username'";
+function checkUsername($username,$id, $conn){
+    $q = "select * from users where username = '$username' and userid != $id; ";
 
         $return = mysqli_query($conn, $q);
 
@@ -401,8 +401,8 @@ function checkUsername($username, $conn){
 
 
 
-function checkEmail($email, $conn){
-    $q = "select * from users where email = '$email'";
+function checkEmail($email,$id, $conn){
+    $q = "select * from users where email = '$email' and userid != $id;";
 
     $return = mysqli_query($conn, $q);
 

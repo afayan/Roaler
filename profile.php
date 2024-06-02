@@ -29,7 +29,9 @@ if (isset($_GET["id"])) {
         
         <button id="follow">add Friend</button>
     </div>
-    <div id="middle">Posts</div>
+    <div id="middle">
+        <p style="padding: 20px; font-size:large; margin:0px; background-color:#FF5757">Posts</p>
+    </div>
     <div id="bottom">
         <div id="messagesbyprofile" style="display: flex; flex-direction:column;">
         </div>
