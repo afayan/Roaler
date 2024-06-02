@@ -1,4 +1,4 @@
-# Roaler
+#  Social media website - Roaler
 ### LAMP stack Roaler is a social media website where users can create profiles and interact with each other privately and publicly. The website has various pages including Home, Inbox, Search, Explore, Profile and Settings. All of these pages have functionalities of their own which we will explore: 
 ## Languages and their functionalities 
 HTML: Framework 
