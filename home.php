@@ -187,6 +187,8 @@ include 'header.php';
             var msg = chat.value;
             console.log(msg);
 
+          
+
             if (msg.trim() === '') {
               console.log("empty msg box")
             }
@@ -198,8 +200,7 @@ include 'header.php';
 
 
             var msgdata = {};
-            // msgdata.sender = '<?php //echo $_SESSION['name'];?>';
-            // msgdata.sendermail = '<?php //echo $_SESSION['loggedMail'];?>';
+    
             msgdata.senderid = '<?php echo $_SESSION['id'];?>';
             msgdata.message = msg;
             msgdata.rtype = 'message';
@@ -214,6 +215,8 @@ include 'header.php';
 
                     messageJSON = JSON.parse(this.responseText);
                     //console.log(messageJSON);
+
+                    console.log("msg sent");
                     renderMessages(messageJSON);
 
                 }

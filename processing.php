@@ -134,17 +134,19 @@ switch ($type) {
 
         $showMessages = "select u.userid, u.username, u.name, m.message, u.image from users u, messages m where u.userid = m.userid;";
 
-        $messagesArray = mysqli_query($conn, $showMessages);
+        // $messagesArray = mysqli_query($conn, $showMessages);
 
-        $msgArray = [];
+        // $msgArray = [];
 
-        while ($row = mysqli_fetch_assoc($messagesArray)) {
-            $msgArray[] = $row;
-        }
+        // while ($row = mysqli_fetch_assoc($messagesArray)) {
+        //     $msgArray[] = $row;
+        // }
 
-        $messageJSON = json_encode($msgArray);
+        // $messageJSON = json_encode($msgArray);
 
-        echo $messageJSON;
+        // echo $messageJSON;
+
+        echo convertToJSON(mysqli_query($conn, $showMessages));
         break;
 
     case 'logout':
