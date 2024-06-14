@@ -1,7 +1,6 @@
 .songCard{
     width: 290px;
     height: 120px;
-    background-color: bisque;
     margin: 16px;
     border-radius: 8px;
     display: flex;
@@ -14,7 +13,7 @@
     border-radius: 20px;
     border:1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    background-color: #FFDE59;
+    background-color: #e1e1e1;
 }
 
 
@@ -105,7 +104,6 @@
     padding: 10px;
     width: 330px;
     margin: 20px;
-    background-color: antiquewhite;
     border-radius: 10px;
 
 
@@ -115,7 +113,7 @@
     border-radius: 20px;
     border:1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    background-color: #FFDE59;
+    background-color: #e1e1e1;
 }
 
 .gameIcons{
@@ -302,3 +300,49 @@
     margin-left: 0px;
 }
 
+#followerCount{
+    padding-left: 60px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.newsSelect {
+    position: relative;
+    display: flex;
+    flex-direction: row; /* This can be omitted as it's already inline style */
+    flex-wrap: wrap;
+    border-radius: 0.5rem;
+    background-color: #EEE;
+    box-sizing: border-box;
+    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+    padding: 0.25rem;
+    width: 100%;
+    font-size: 14px;
+  }
+  
+  .newsSelectRadio {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  
+  .newsSelectRadio input {
+    display: none;
+  }
+  
+  .newsSelectRadio p {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: none;
+    padding: 10px;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
+  }
+  
+  .newsSelectRadio input:checked + p {
+    background-color: #fff;
+    font-weight: 600;
+  }
+  

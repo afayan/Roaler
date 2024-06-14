@@ -146,6 +146,8 @@ flex-direction:row;
 
         if (fileInfo) {
             changeprofile.image = fileInfo.name
+            saveImage()
+
         }
 
         else{
@@ -174,6 +176,29 @@ flex-direction:row;
                 }
             }
 
-            xhr.send(JSON.stringify(changeprofile))      
+            xhr.send(JSON.stringify(changeprofile))  
+            
+            
     })
+
+    function saveImage(){
+        console.log("save image function")
+
+        const file =  document.getElementById('getProfilePic').files[0]
+        const formData = new FormData()
+        formData.append("file", file)
+
+        fetch('uploadImage.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+    }
 </script>

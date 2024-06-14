@@ -8,6 +8,8 @@ include 'header.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roaler</title>
     <link rel="stylesheet" href="roaler.css">
+    <link rel="icon" href="../roalerLogo.png" type="image/jpeg">
+
 </head>
 <body>
     <header>

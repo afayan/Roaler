@@ -122,7 +122,7 @@ switch ($type) {
 
         //echo "message recieved - " . $myData['message'];
         # code...
-        $message = $myData['message'];
+        $message = addslashes($myData['message']);
         $userid = $myData['senderid'];
         // $currentUser = $_SESSION['username'];
         // echo $currentUser;
@@ -163,10 +163,13 @@ switch ($type) {
         $idreq = $myData['id'];
         $query = "select * from users where userid = '$idreq';";
         $query2 = "select * from messages where userid = '$idreq';";
+        $q3 = "select count(*) as friendsNo from friends where id1 = '$idreq' or id2 = '$idreq';";
         //echo convertToJSON(mysqli_query($conn,$query));
         //echo convertToJSON(mysqli_query($conn,$query2));
         $arr1 = mysqli_query($conn, $query);
         $arr2 = mysqli_query($conn, $query2);
+
+        $countFriends = convertSqliToArray(mysqli_query($conn, $q3));
         $new1 = [];
         $new2 = [];
 
@@ -181,6 +184,7 @@ switch ($type) {
         }
 
         $new1['messages'] = $new2;
+        $new1['friendCount'] = $countFriends;
 
         echo json_encode($new1);
 
@@ -247,7 +251,7 @@ switch ($type) {
             # code...
             $senderid = $myData['senderid'];
             $recieverid = $myData['recieverid'];
-            $dm = $myData['message'];
+            $dm = addslashes($myData['message']) ;
             $q = "insert into dms(id1, id2, message) values ($senderid,$recieverid, '$dm');";
             mysqli_query($conn, $q);
 

@@ -11,6 +11,8 @@ include_once "header.php";
     <!-- <link rel="icon" type="image/png" href="images/roalerLogo.png"> -->
     <link rel="stylesheet" href="roaler.css">
     <link rel="stylesheet" href="roaler2.css">
+    <link rel="icon" href="../roalerLogo.png" type="image/jpeg">
+
 </head>
 <body style="margin-left: 250px; overflow:hidden; background-color:bisque; display:flex; flex-direction:row; background-color:gray">
 
@@ -87,13 +89,28 @@ include_once "header.php";
 
 </div>
 
+<div id="secondColumn">
 
-<div id="news">
+<div class="newsSelect" style="display: flex; flex-direction:row">
 
-<h1>Loading...</h1>
+<label class="newsSelectRadio">
+  <input type="radio" name="newsType" id="newsType" onclick="newsFunction()">
+  <p>News Normal</p>
+  </label>
 
+  <label class="newsSelectRadio">
+  <input type="radio" name="newsType" id="newsType" onclick="moshee()" checked="">
+  <p>Moshee</p>
+  </label>
+</div>
 
+  
 
+  <div id="news">
+  
+  <h1>Loading...</h1>
+  
+  </div>
 </div>
 <div id="media"></div>
 </body>
@@ -206,6 +223,10 @@ include_once "header.php";
     }
 
 
+  function newsFunction(){
+    console.log("You want news?")
+  
+
     xml = new XMLHttpRequest()
 
     xml.open('GET','https://newsapi.org/v2/everything?q=keyword&apiKey=ce5a384023a94979a8ed8a62f5fadb71', true)
@@ -223,10 +244,37 @@ include_once "header.php";
     }
 
     xml.send()
+  }
+
+  function moshee(){
+
+    m = {}
+    m.stype = "API"
+
+    console.log("You want moshee?")
+
+    fetch('../moshee/processing.php', {
+      "method":"POST",
+      "body": JSON.stringify(m)
+    }).then(function(response) {
+      console.log("first happend")
+      return response.json()
+    }).then(function(data){
+      // console.log(data)
+      console.log("second also")
+      
+      console.log(data)
+
+      renderNews(data, 0, 10)
+
+      
+    })
+  }
+
+  moshee()
 
 
-
-    function renderNews(news, i ,j) {
+function renderNews(news, i ,j) {
 //         <div class="newscard">
 //   <div class="newscard-image" style="background-image: url('images/original.avif');"></div>
 //   <div class="newscard-content">
@@ -234,6 +282,8 @@ include_once "header.php";
 //     <p>This is a news card</p>
 //   </div>
 // </div>
+
+console.log(news)
 
       if (i<0) {
           i = 0;
@@ -254,8 +304,16 @@ include_once "header.php";
           `
         }
 
-        html+=`<button onclick ='renderNews(news,${i-10} ,${j-10})' class = "scrollNews"> Back</button> `
-        html+=`<button onclick ='renderNews(news,${i+10} ,${j+10})' class = "scrollNews"> Next</button> `
+        if (news.rtype) {
+          html+=`<button onclick ="window.location.href = '../moshee/home.php' " class = "scrollNews"> Read More with moshee!</button> `
+        }
+
+        else{
+          
+                  html+=`<button onclick ='renderNews(news,${i-10} ,${j-10})' class = "scrollNews"> Back</button> `
+                  html+=`<button onclick ='renderNews(news,${i+10} ,${j+10})' class = "scrollNews"> Next</button> `
+
+        }
         newsCol.innerHTML = html
     }
 
@@ -278,7 +336,7 @@ include_once "header.php";
             //get news
             // console.log(JSON.parse(this.responseText))
 
-            console.table(JSON.parse(this.responseText)); 
+            // console.table(JSON.parse(this.responseText)); 
             mediaObj = JSON.parse(this.responseText)
             renderMedia(mediaObj)
             
@@ -338,9 +396,7 @@ xhr.addEventListener('readystatechange', function () {
 	if (this.readyState === this.DONE) {
 		// console.log(this.responseText);
     gamesList = JSON.parse(this.responseText)
-    console.log(gamesList)
-
-
+    // console.log(gamesList)
     renderGames(gamesList)
 	}
 });
@@ -356,7 +412,7 @@ function renderGames(gamesList){
 
     for (let i = 0; i < 10; i++) {
       const element = gamesList[i];
-      console.log(element)
+      // console.log(element)
 
       html += `  
       

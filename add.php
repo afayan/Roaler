@@ -6,6 +6,8 @@
     <title>Add</title>
     <link rel="stylesheet" href="roaler.css">
     <link rel="stylesheet" href="roaler2.css">
+    <link rel="icon" href="../roalerLogo.png" type="image/jpeg">
+
 </head>
 <body style="background-color: grey; margin-left: 250px;
 display:flex;

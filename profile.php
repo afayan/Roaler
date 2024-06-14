@@ -17,12 +17,15 @@ if (isset($_GET["id"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="roaler.css">
+    <link rel="icon" href="../roalerLogo.png" type="image/jpeg">
+
 </head>
 <body style="margin-left: 250px;">
     <div id="top">
         <img id="profilePicLarge" class="profilepiclarge" src="images/blank-profile-picture-973460_960_720.webp" alt="profilepic">
         <div style="display: flex; flex-direction:column; width:500px">
             <h3 id="usernameTag" style="padding-left: 60px; padding-right: 100px"></h3>
+            <h3 id="followerCount">Following</h2>
             <h1 id="nameTag" style="padding-left: 60px;">Name</h1>
             <p id="bio" style="padding-left: 60px;">hey hey</p>
         </div>
@@ -115,6 +118,7 @@ if (isset($_GET["id"])) {
         // document.getElementById('profilepiclarge').src = "images/"+data[0].image;
         document.getElementById('profilePicLarge').src = "images/"+data[0].image;
         document.getElementById('bio').innerHTML = data[0].bio;
+        document.getElementById('followerCount').textContent = data.friendCount[0].friendsNo + " friends"
 
 
         html = '';

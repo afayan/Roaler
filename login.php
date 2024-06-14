@@ -5,6 +5,7 @@
     <title>Roaler Login</title>
     <link rel="stylesheet" href="roaler.css">
     <link rel="stylesheet" href="roaler2.css">
+    <link rel="icon" href="../roalerLogo.png" type="image/jpeg">
 </head>
 <body style="display: flex; flex-direction:row;     background-color: #FFDE59;
 ">
