@@ -35,22 +35,26 @@ if (isset($_GET["id"])) {
             </div>
                 
 
-                <div id="blocker"   style="position: fixed; height: 100%; width: 1143px; top: 67px; right: 0px; z-index:9999;     background-color: #FF5757;
+                <div id="blocker"  style="position: fixed; height: 100%; width: 1010px; top: 67px; right: 0px; z-index:9999;     background-color: #FF5757;
                     ; font-size:70px;">
-                    <img src="images/chat_48dp_FILL0_wght200_GRAD0_opsz48.png" alt=""
+                    <img src="icons/chat_40dp_FILL0_wght400_GRAD0_opsz40.png" alt=""
                     style="padding-left: 40%;padding-top:20%;">
-                    <h1 style="font-size:50px; margin-left:35%; color:white;
+                    <h1 style="font-size:38px; margin-left:35%; color:white;
                     font-weight:10;
                     
                     ">Start messaging</h1>
                 </div>
 
                 <div id="alldms">
+
+                    
+
+
                     <div class="dm">Hey</div>
                 </div>
                 <div id="sendDMBar">
                     <!-- <input type="text" id="DMtoSend" style="padding: 10px;"> -->
-                    <textarea name="dm" id="DMtoSend"  rows="2" cols="94"></textarea>
+                    <textarea name="dm" id="DMtoSend"  rows="2" cols="85"></textarea>
                     <button id="sendDM" style="padding: 10px; margin-top: -90px; margin-left:20px">
                 </button>
                 </div>

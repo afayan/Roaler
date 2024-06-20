@@ -9,7 +9,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         // Verify file extension
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
-        $allowed = array("jpg", "jpeg", "gif", "png", "txt", "pdf", "docx");
+        $allowed = array("jpg", "jpeg", "gif", "png", "txt", "pdf", "docx", "webp");
         if(!in_array($ext, $allowed)) {
             die("Error: Please select a valid file format.");
         }

@@ -68,7 +68,7 @@ include 'header.php';
       <form id="sendMesg">
         <textarea name="chat1" id="chat" class="chat"></textarea>
         <button class="sendbutton" type="button" name="sendbutton1" id="sendMessage">
-          <img src="images/send_24dp_FILL0_wght300_GRAD0_opsz24 (1).png" alt="" style="width: 35px;">
+          <img src="images\send_24dp_FILL0_wght300_GRAD0_opsz24%20(1).png" alt="" style="width: 35px;">
         </button>
         </form>
         

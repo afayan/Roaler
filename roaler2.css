@@ -170,8 +170,7 @@
     border:none;
     transition: 1s;
     font-size: large;
-    color: azure;
-    
+    color: azure;    
 }
 
 .friend:hover{
@@ -250,7 +249,7 @@
     width: 50px;
     background-color: #FF5757;
     transition: 0.3s;
-    background-image: url('images/send_24dp_FILL0_wght300_GRAD0_opsz24.png');
+    background-image: url('images/send_24dp_FILL0_wght400_GRAD0_opsz24.png');
     background-size: 40px;
     background-repeat: no-repeat;
     bottom: 10px;
