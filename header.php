@@ -14,7 +14,7 @@ session_start();
 <body>
 <div id="searchcolumn">
           <h1>Search</h1>
-          <input type="search" id="searchbar">
+          <input type="search" id="searchbar" onchange="searchProfiles()">
           <button id="search">Search</button>
           <div class="searchresults" id="searchresults" style="margin-top: 10px;">
 

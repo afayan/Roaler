@@ -80,7 +80,16 @@ if (isset($_GET["id"])) {
     //         console.log("hell")
     //     }
 
-        document.getElementById('sendDM').addEventListener('click', function() {
+        document.getElementById('sendDM').addEventListener('click', sendDM)
+        
+    
+        document.addEventListener('keydown', event => {
+          if (!event.shiftKey && (event.key === "Enter")) {
+            sendDM()
+          }
+        })
+        
+        function sendDM() {
             //function to send message
             var DMtoSend = document.getElementById('DMtoSend')
             console.log(DMtoSend.value)
@@ -100,6 +109,7 @@ if (isset($_GET["id"])) {
             dmdata.message = DMtoSend.value
 
             DMtoSend.value = ""
+            // DMtoSend.value =  DMtoSend.value.replace(, '');
 
 
             console.log(senderid+" send to "+recieverid);
@@ -119,7 +129,7 @@ if (isset($_GET["id"])) {
             console.table(dmdata)
             xhr.send(JSON.stringify(dmdata))
         }
-        })
+        }
 
         function renderFriends(){
             console.log("hell");
@@ -182,6 +192,11 @@ if (isset($_GET["id"])) {
 
 
             document.getElementById('personToDM').innerHTML = val
+
+            document.getElementById('chatHeader').onclick = function() {
+                    window.location.href = "profile.php?id=" + userid;
+                };
+
 
 
             var dmdata = {}

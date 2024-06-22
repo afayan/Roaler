@@ -28,8 +28,7 @@ include 'header.php';
           <!-- <button class="leftbutton">Home</button>
           <button class="leftbutton" id="searchMenu">Search</button>
           <button class="leftbutton" onclick="window.location.href='explore.php'">Explore</button>
-          <button class="leftbutton" onclick="window.location.href='inbox.php?id=<?=$_SESSION['id']?>'">Inbox</button>
-          <button class="leftbutton" onclick="window.location.href='profile.php?id=<?=$_SESSION['id']?>'">Profile</button>
+          <button class="leftbutton" onclick="window.location.href='inofile</button>
           <button class="leftbutton">Settings</button> -->
         </div>
 
@@ -68,7 +67,7 @@ include 'header.php';
       <form id="sendMesg">
         <textarea name="chat1" id="chat" class="chat"></textarea>
         <button class="sendbutton" type="button" name="sendbutton1" id="sendMessage">
-          <img src="images\send_24dp_FILL0_wght300_GRAD0_opsz24%20(1).png" alt="" style="width: 35px;">
+          <img src="icons/sendLarge.png" alt="" style="width: 35px;">
         </button>
         </form>
         
@@ -87,6 +86,12 @@ include 'header.php';
 
 
         sendButton.addEventListener('click', sendMessage);
+        document.addEventListener('keydown', event => {
+          console.log(event)
+          if (!event.shiftKey && (event.key === "Enter")) {
+            sendMessage()
+          }
+        })
 
         // search.addEventListener('click', searchProfiles);
 
@@ -252,8 +257,8 @@ include 'header.php';
 
                 //  console.table(element)
 
-            html+=`<div class="tweet-content" onclick = "window.location.href = 'profile.php?id=${element.userid}' " >
-            <strong class = "message-info"> 
+            html+=`<div class="tweet-content"  >
+            <strong class = "message-info" onclick = "window.location.href = 'profile.php?id=${element.userid}' "> 
             <img src="images/${element.image}" alt="prfilepic" class = "profilePicSmall">
             ${element.name}  <span class="usernameTag">@${element.username}</span></strong>
             <p  class= "tweetText">

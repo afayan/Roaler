@@ -168,7 +168,7 @@ if (isset($_GET["id"])) {
         }
 
 
-        console.log(afreq);
+        // console.log(afreq);
 
 
 
@@ -182,6 +182,7 @@ if (isset($_GET["id"])) {
 
             // profileInfo = JSON.parse(this.responseText);
             console.log(this.responseText);
+            getProfileInfo()
 
 
             // setInfo(profileInfo);
@@ -189,6 +190,8 @@ if (isset($_GET["id"])) {
         }
 
         xhr.send(JSON.stringify(afreq));
+
+
 
     }
     }
