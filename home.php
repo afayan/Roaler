@@ -9,6 +9,7 @@ include 'header.php';
     <title>Roaler</title>
     <link rel="stylesheet" href="roaler.css">
     <link rel="icon" href="../roalerLogo.png" type="image/jpeg">
+    <link rel="stylesheet" href="roaler3.css">
 
 </head>
 <body>
@@ -47,6 +48,8 @@ include 'header.php';
           </div>
             <p class="bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam vel quae id aperiam sequi. Nesciunt similique quasi laudantium, explicabo cupiditate earum iusto nam ullam corporis ipsam dolores, nisi nobis veniam.</p>
         </div>
+
+     
         
           <p style="margin-left: 20px;">You might like</p>
           <div class="trends">
@@ -117,7 +120,7 @@ include 'header.php';
         // function searchProfiles(){
         //  // console.log("so u wanna search?");
         //   var searchQuery = {};
-        //   let id = <?= $_SESSION['id']?>
+        //   let id = 
 
         //   var profileToSearch = document.getElementById('searchbar').value;
 
@@ -252,19 +255,44 @@ include 'header.php';
             
             // console.table(messageArray)
 
+
             messageArray.slice().reverse().forEach(element => {
                 // console.log(messageArray.image);
 
-                //  console.table(element)
+                // console.log(element);
 
-            html+=`<div class="tweet-content"  >
+                //  console.table(element)
+                console.log(typeof(element.userid)+","+id)
+
+            if ( parseInt(element.userid) === id) {
+
+              console.log("same")
+
+              html+=`<div class="tweet-content"  >
             <strong class = "message-info" onclick = "window.location.href = 'profile.php?id=${element.userid}' "> 
             <img src="images/${element.image}" alt="prfilepic" class = "profilePicSmall">
             ${element.name}  <span class="usernameTag">@${element.username}</span></strong>
             <p  class= "tweetText">
             ${element.message}
             </p>
-            </div>`;   
+            
+            <button class = "msgInfoButton" onclick = "displayInfo(${element.messageid})">
+               <img src="icons/delete.png" alt="delete">
+            </button>
+            </div>`;  
+            }
+            else{
+              html+=`<div class="tweet-content"  >
+            <strong class = "message-info" onclick = "window.location.href = 'profile.php?id=${element.userid}' "> 
+            <img src="images/${element.image}" alt="prfilepic" class = "profilePicSmall">
+            ${element.name}  <span class="usernameTag">@${element.username}</span></strong>
+            <p  class= "tweetText">
+            ${element.message}
+            </p>
+            </div>`; 
+            }
+
+      
             });
 
             Roll.innerHTML = html;
@@ -337,6 +365,10 @@ include 'header.php';
 
           }
 
+          else if(obj['ptype'] === 'reply'){
+            
+          }
+
 
 
           
@@ -347,7 +379,22 @@ include 'header.php';
         config = {id: id, rtype: 'config'}
         sendAJAX(config)
 
+      async function displayInfo(id){
+          console.log(id);
+          var d = {}
+          d.rtype = 'deleteMessage'
+          d.id = id
 
+          fetch('processing.php', {
+            method : "POST",
+            body : JSON.stringify(d)
+          }).then(function(response){
+            return response.json()
+          }).then(function(data3){
+            renderMessages(data3)
+            console.log(data3);
+          })
+        }
         
     </script>
 </body>

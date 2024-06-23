@@ -132,7 +132,7 @@ switch ($type) {
 
         //echo "inserted into database";
 
-        $showMessages = "select u.userid, u.username, u.name, m.message, u.image from users u, messages m where u.userid = m.userid;";
+        $showMessages = "select m.messageid, u.userid, u.username, u.name, m.message, u.image from users u, messages m where u.userid = m.userid;";
 
         // $messagesArray = mysqli_query($conn, $showMessages);
 
@@ -319,7 +319,7 @@ switch ($type) {
 
     case 'defo':
 
-        $q = "select u.userid, u.username, u.name, m.message, u.image from users u, messages m where u.userid = m.userid;";
+        $q = "select m.messageid, u.userid, u.username, u.name, m.message, u.image from users u, messages m where u.userid = m.userid;";
         # code...
 
         echo convertToJSON(mysqli_query($conn,$q));
@@ -362,6 +362,18 @@ switch ($type) {
         $q = "select username, image, userid,email from users;";
 
         echo convertToJSON(mysqli_query($conn, $q));
+        break;
+
+    case 'deleteMessage':
+        $id = $myData['id'];
+        $q = "delete from messages where messageid = $id ;";
+        $q2 = "select m.messageid, u.userid, u.username, u.name, m.message, u.image from users u, messages m where u.userid = m.userid;";
+
+        mysqli_query($conn, $q);
+
+        echo convertToJSON(mysqli_query($conn, $q2));
+
+        // echo json_encode(['Hey']);
         break;
 
     default:

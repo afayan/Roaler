@@ -122,7 +122,7 @@ if (isset($_GET["id"])) {
 
 
         html = '';
-        data.messages.forEach(element => {
+        data.messages.slice().reverse().forEach(element => {
             //console.log(element.message);
             html+=`<div class="tweet">${element.message}</div>`
 

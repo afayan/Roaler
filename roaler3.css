@@ -1,0 +1,12 @@
+.msgInfoButton{
+    background-color: #FF5757;
+    border: 0px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+.msgInfoButton img{
+    width: 17px;
+}
