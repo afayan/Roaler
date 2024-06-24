@@ -364,12 +364,32 @@ switch ($type) {
         echo convertToJSON(mysqli_query($conn, $q));
         break;
 
-    case 'deleteMessage':
+    case 'modifyMessage':
         $id = $myData['id'];
-        $q = "delete from messages where messageid = $id ;";
+
+        switch ($myData['stype']) {
+            case 'delete':
+                $q = "delete from messages where messageid = $id ;";
+                mysqli_query($conn, $q);
+                
+                break;
+            
+
+            case 'reply':
+                # code...
+                
+
+                break;
+            
+            default:
+                //nothing
+                break;
+        }
+
+
+
         $q2 = "select m.messageid, u.userid, u.username, u.name, m.message, u.image from users u, messages m where u.userid = m.userid;";
 
-        mysqli_query($conn, $q);
 
         echo convertToJSON(mysqli_query($conn, $q2));
 

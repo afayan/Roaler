@@ -115,48 +115,7 @@ include 'header.php';
             }
 
             xhr.send(JSON.stringify(defaultRender));
-          //end
-
-        // function searchProfiles(){
-        //  // console.log("so u wanna search?");
-        //   var searchQuery = {};
-        //   let id = 
-
-        //   var profileToSearch = document.getElementById('searchbar').value;
-
-        //   console.log(profileToSearch);
-
-        //   searchQuery.query = profileToSearch;
-        //   searchQuery.rtype = 'search';
-
-
-        //   xhr = new XMLHttpRequest();
-
-        //   xhr.open('POST', 'processing.php', true);
-
-        //   xhr.onload = function(){
-        //     if (this.status == 200) {
-        //       //console.log(this.responseText);
-        //       var resp = JSON.parse(this.responseText);
-        //       console.log(resp);
-        //       // //callback(resp);
-        //       // html2 = '';
-
-        //       // resp.forEach(element2 => {
-        //       // html2+= `<a href="profile.php?id=${element2.userid}"> <p>${element2.name}           
-        //       // </p></a>`;
-        //       });
-
-        //   document.getElementById('searchresults').innerHTML= html2;
-
-        //     }
-        //   }
-
-        //   xhr.send(JSON.stringify(searchQuery));
-
-        //   //var searchResults = sendAJAX(searchQuery);
-        //   //console.log(searchResults);
-        // }
+      
 
         function sendAJAX(objtosend) {
 
@@ -244,17 +203,8 @@ include 'header.php';
         //logout
  
         function renderMessages(messageArray) {
-            // alert(messageArray);
-
-            // for(i in messageArray){
-            //     console.log(i+'next');
-            // }
 
             html = '';
-
-            
-            // console.table(messageArray)
-
 
             messageArray.slice().reverse().forEach(element => {
                 // console.log(messageArray.image);
@@ -262,7 +212,7 @@ include 'header.php';
                 // console.log(element);
 
                 //  console.table(element)
-                console.log(typeof(element.userid)+","+id)
+                // console.log(typeof(element.userid)+","+id)
 
             if ( parseInt(element.userid) === id) {
 
@@ -275,10 +225,21 @@ include 'header.php';
             <p  class= "tweetText">
             ${element.message}
             </p>
+
+            <div class = "dropdown"> 
+              <button class = "msgInfoButton">
+                i
+              </button>
+              
+              <div class = "msgOptions">
+                <button class = "msgButtons" onclick = "displayInfo(${element.messageid}, 'delete');" >Delete</button>
+                <button class = "msgButtons" onclick = "displayInfo(${element.messageid}, 'reply');" >Reply</button>  
+                <button class = "msgButtons">Report</button>  
+                <button class = "msgButtons">More</button>  
+              </div>
+            </div>
             
-            <button class = "msgInfoButton" onclick = "displayInfo(${element.messageid})">
-               <img src="icons/delete.png" alt="delete">
-            </button>
+        
             </div>`;  
             }
             else{
@@ -289,6 +250,19 @@ include 'header.php';
             <p  class= "tweetText">
             ${element.message}
             </p>
+
+            <div class = "dropdown"> 
+              <button class = "msgInfoButton">
+                i
+              </button>
+              
+              <div class = "msgOptions">
+                <button class = "msgButtons" onclick = "displayInfo(${element.messageid}, 'reply');" >Reply</button>  
+                <button class = "msgButtons">Report</button>  
+                <button class = "msgButtons">More</button>  
+              </div>
+            </div>
+
             </div>`; 
             }
 
@@ -367,23 +341,24 @@ include 'header.php';
 
           else if(obj['ptype'] === 'reply'){
             
-          }
+          } 
 
 
 
           
         }
     
-        console.log(id)
 
         config = {id: id, rtype: 'config'}
         sendAJAX(config)
 
-      async function displayInfo(id){
+      async function displayInfo(idToModify, operation){
           console.log(id);
           var d = {}
-          d.rtype = 'deleteMessage'
-          d.id = id
+          d.rtype = 'modifyMessage'
+          d.stype = operation
+          d.id = idToModify
+          d.primaryId = id
 
           fetch('processing.php', {
             method : "POST",
@@ -392,9 +367,10 @@ include 'header.php';
             return response.json()
           }).then(function(data3){
             renderMessages(data3)
-            console.log(data3);
+            // console.log(data3);
           })
         }
+
         
     </script>
 </body>

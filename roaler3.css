@@ -1,12 +1,40 @@
 .msgInfoButton{
     background-color: #FF5757;
     border: 0px;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
+}
+
+.msgOptions{
+    display: none;
+    transition: all 1s;
+}
+
+.msgButtons{
+    background-color: gray;
+    color: white;
+    display: block;
+    width: 100px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.msgButtons:hover{
+    background-color: #FF5757;
+    color: yellow;
+}
+
+.dropdown{
+    position: absolute;
+}
+
+.dropdown:hover .msgOptions{
+    display: block;
 }
 
 .msgInfoButton img{
-    width: 17px;
+    width: 12px;
 }
