@@ -63,7 +63,15 @@ include 'header.php';
           </div>
         </div>
 
+      <div class="replyBar">
+        <button onclick="replyBar.style.display = 'none' ">X</button>
+        <p id="replyTitle"></p>
 
+        <p class="replyText">
+
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias atque non consequuntur, delectus maxime perferendis ea, minus iure odio sint aliquam, alias inventore expedita consequatur vitae corporis vero nam quasi?
+        </p>
+      </div>
 
 
       <footer>
@@ -77,6 +85,10 @@ include 'header.php';
       </footer>
 
     <script>
+        var replyToGive = 0
+        var replyBar = document.querySelector('.replyBar')
+        var replyText  = document.querySelector('.replyText');
+        var replyTitle = document.getElementById('replyTitle');
         var chat = document.getElementById('chat');
         var sendButton = document.getElementById('sendMessage');
         var Roll = document.getElementById('Roll');
@@ -90,7 +102,7 @@ include 'header.php';
 
         sendButton.addEventListener('click', sendMessage);
         document.addEventListener('keydown', event => {
-          console.log(event)
+          // console.log(event)
           if (!event.shiftKey && (event.key === "Enter")) {
             sendMessage()
           }
@@ -125,10 +137,7 @@ include 'header.php';
 
           xhr.onload = function(){
             if (this.status == 200) {
-              //console.log(this.responseText);
-              //var resp = JSON.parse(this.responseText);
-              // console.table(JSON.parse(this.responseText));
-              //callback(resp);
+   
 
               work(JSON.parse(this.responseText))
 
@@ -141,16 +150,6 @@ include 'header.php';
         }
 
 
-        // searchButton.addEventListener('click', function(){
-
-        //   if (searchcolumn.style.left == "250px") {
-        //     searchcolumn.style.left = "-300px";
-        //   }
-
-        //   else{
-        //     searchcolumn.style.left = "250px";
-        //   }
-        // })
 
         function sendMessage(){
             var msg = chat.value;
@@ -173,6 +172,7 @@ include 'header.php';
             msgdata.senderid = '<?php echo $_SESSION['id'];?>';
             msgdata.message = msg;
             msgdata.rtype = 'message';
+            msgdata.reply = replyToGive
 
 
             console.log(msgdata);
@@ -183,10 +183,11 @@ include 'header.php';
                     console.log(msgdata);
 
                     messageJSON = JSON.parse(this.responseText);
-                    //console.log(messageJSON);
+                    console.table(messageJSON);
 
                     console.log("msg sent");
                     renderMessages(messageJSON);
+                    replyBar.style.display = 'none'
 
                 }
             }
@@ -213,18 +214,28 @@ include 'header.php';
 
                 //  console.table(element)
                 // console.log(typeof(element.userid)+","+id)
-
-            if ( parseInt(element.userid) === id) {
-
+                
+              if ( parseInt(element.userid) === id) {
+                  
+                  
+                
+              msgString = JSON.stringify(element.message)
               console.log("same")
 
-              html+=`<div class="tweet-content"  >
-            <strong class = "message-info" onclick = "window.location.href = 'profile.php?id=${element.userid}' "> 
-            <img src="images/${element.image}" alt="prfilepic" class = "profilePicSmall">
-            ${element.name}  <span class="usernameTag">@${element.username}</span></strong>
-            <p  class= "tweetText">
-            ${element.message}
-            </p>
+              html+=`<div class="tweet-content" >
+
+              ${element.replyTo? `<p class = "replyTo">${element.replyTo? "replying to "+ element.replyTo: ""}</p>
+                <p class = "replyMessage">${element.replyMsg? element.replyMsg: ""}</p>` : ''}
+
+                
+
+                
+                <strong class = "message-info" onclick = "window.location.href = 'profile.php?id=${element.userid}' "> 
+                <img src="images/${element.image}" alt="prfilepic" class = "profilePicSmall">
+                ${element.name}  <span class="usernameTag">@${element.username}</span></strong>
+                <p  class= "tweetText">
+                ${element.message}
+                </p>
 
             <div class = "dropdown"> 
               <button class = "msgInfoButton">
@@ -232,8 +243,8 @@ include 'header.php';
               </button>
               
               <div class = "msgOptions">
-                <button class = "msgButtons" onclick = "displayInfo(${element.messageid}, 'delete');" >Delete</button>
-                <button class = "msgButtons" onclick = "displayInfo(${element.messageid}, 'reply');" >Reply</button>  
+                <button class = "msgButtons" onclick = "displayInfo(${element.messageid}, 'delete', 'no' );" >Delete</button>
+                <button class = "msgButtons" onclick = "displayInfo(${element.messageid}, 'reply', ${msgString.replace(/"/g, '&quot;')} , '${element.username}');" >Reply</button>  
                 <button class = "msgButtons">Report</button>  
                 <button class = "msgButtons">More</button>  
               </div>
@@ -243,7 +254,16 @@ include 'header.php';
             </div>`;  
             }
             else{
+
+              msgString = JSON.stringify(element.message)
+
+
               html+=`<div class="tweet-content"  >
+
+                 ${element.replyTo? `<p class = "replyTo">${element.replyTo? "replying to "+ element.replyTo: ""}</p>
+                <p class = "replyMessage">${element.replyMsg? element.replyMsg: ""}</p>` : ''}
+
+
             <strong class = "message-info" onclick = "window.location.href = 'profile.php?id=${element.userid}' "> 
             <img src="images/${element.image}" alt="prfilepic" class = "profilePicSmall">
             ${element.name}  <span class="usernameTag">@${element.username}</span></strong>
@@ -257,7 +277,7 @@ include 'header.php';
               </button>
               
               <div class = "msgOptions">
-                <button class = "msgButtons" onclick = "displayInfo(${element.messageid}, 'reply');" >Reply</button>  
+                <button class = "msgButtons" onclick = "displayInfo(${element.messageid}, 'reply' ,${msgString.replace(/"/g, '&quot;')}, '${element.username}');" >Reply</button>  
                 <button class = "msgButtons">Report</button>  
                 <button class = "msgButtons">More</button>  
               </div>
@@ -288,11 +308,6 @@ include 'header.php';
             if (this.status === 200) {
               console.table(JSON.parse(this.responseText))
               obj = JSON.parse(this.responseText)
-
-              //                 <a href="profile.php?id=${element.userid}">                     </a>
-
-
-
 
               html = ''
 
@@ -352,13 +367,27 @@ include 'header.php';
         config = {id: id, rtype: 'config'}
         sendAJAX(config)
 
-      async function displayInfo(idToModify, operation){
-          console.log(id);
+      async function displayInfo(idToModify, operation, msgToReply, usname){
+          console.log(idToModify);
+          console.log(msgToReply);
           var d = {}
           d.rtype = 'modifyMessage'
           d.stype = operation
           d.id = idToModify
           d.primaryId = id
+
+          
+          
+          
+          if (operation === 'reply') {
+            replyText.innerHTML = msgToReply
+            replyBar.style = 'display: block'
+            replyToGive = idToModify;
+            replyTitle.textContent ="replying to "+ usname
+            
+          }
+
+
 
           fetch('processing.php', {
             method : "POST",

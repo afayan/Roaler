@@ -124,27 +124,25 @@ switch ($type) {
         # code...
         $message = addslashes($myData['message']);
         $userid = $myData['senderid'];
+        $reply = $myData['reply'];
         // $currentUser = $_SESSION['username'];
         // echo $currentUser;
 
-        $insertMessage = "insert into messages(message, userid) values ('$message', $userid);";
+        $insertMessage = "insert into messages(message, userid, reply) values ('$message', $userid, $reply);";
         mysqli_query($conn, $insertMessage);
 
         //echo "inserted into database";
 
-        $showMessages = "select m.messageid, u.userid, u.username, u.name, m.message, u.image from users u, messages m where u.userid = m.userid;";
+        //select m.messageid, u.userid, u.username, u.name, m.message, u.image, m2.reply as reply from users u, messages m left join messages m2 on m.reply = m2.messageid where u.userid = m.userid;
 
-        // $messagesArray = mysqli_query($conn, $showMessages);
-
-        // $msgArray = [];
-
-        // while ($row = mysqli_fetch_assoc($messagesArray)) {
-        //     $msgArray[] = $row;
-        // }
-
-        // $messageJSON = json_encode($msgArray);
-
-        // echo $messageJSON;
+        $showMessages = "select 
+        m.messageid, u.userid, u.username, u.name, m.message, u.image, 
+        substring(m2.message, 1, 1000) as replyMsg, u2.username as replyTo 
+        
+        from  
+        messages m join users u on u.userid = m.userid
+        left join messages m2 on m.reply = m2.messageid 
+        left join users u2 on m2.userid = u2.userid;";
 
         echo convertToJSON(mysqli_query($conn, $showMessages));
         break;
@@ -319,7 +317,14 @@ switch ($type) {
 
     case 'defo':
 
-        $q = "select m.messageid, u.userid, u.username, u.name, m.message, u.image from users u, messages m where u.userid = m.userid;";
+        $q = "select 
+        m.messageid, u.userid, u.username, u.name, m.message, u.image, 
+        substring(m2.message, 1, 1000) as replyMsg, u2.username as replyTo 
+        
+        from  
+        messages m join users u on u.userid = m.userid
+        left join messages m2 on m.reply = m2.messageid 
+        left join users u2 on m2.userid = u2.userid;";
         # code...
 
         echo convertToJSON(mysqli_query($conn,$q));
@@ -388,7 +393,14 @@ switch ($type) {
 
 
 
-        $q2 = "select m.messageid, u.userid, u.username, u.name, m.message, u.image from users u, messages m where u.userid = m.userid;";
+        $q2 = "select 
+        m.messageid, u.userid, u.username, u.name, m.message, u.image, 
+        substring(m2.message, 1, 1000) as replyMsg, u2.username as replyTo 
+        
+        from  
+        messages m join users u on u.userid = m.userid
+        left join messages m2 on m.reply = m2.messageid 
+        left join users u2 on m2.userid = u2.userid;";
 
 
         echo convertToJSON(mysqli_query($conn, $q2));

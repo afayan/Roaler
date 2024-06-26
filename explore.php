@@ -254,7 +254,7 @@ include_once "header.php";
     console.log("You want moshee?")
 
     fetch('../moshee/processing.php', {
-      "method":"POST",
+      "method":"POST", 
       "body": JSON.stringify(m)
     }).then(function(response) {
       console.log("first happend")

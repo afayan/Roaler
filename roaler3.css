@@ -38,3 +38,25 @@
 .msgInfoButton img{
     width: 12px;
 }
+
+.replyBar{
+    display: none;
+    position:fixed;
+    z-index: 999;
+    bottom: 70px;
+    height: max-content;
+    padding: 20px;
+    width: 750px;
+    left: 250px;
+    background-color: #FF5757;
+}
+
+.replyTo{
+    color: gray;
+}
+
+.replyMessage{
+    background-color: rgb(221, 221, 119);
+    border-radius: 10px;
+    padding: 10px;
+}
