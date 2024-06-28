@@ -84,7 +84,6 @@ switch ($type) {
             
             
             $creds = json_decode($data, true);
-            echo "dtaaaa given";
             
             $name = $creds['name'];
             $password = $creds['password'];
@@ -92,7 +91,7 @@ switch ($type) {
             $email = $creds['email'];
             //$username = $creds['username'];
             
-            echo "Data received: Name - $name, Password - $password";
+            echo "Account successfully created! Login with you account now!";
             
             $insertvals = "insert into users(username, email, name, password, image) values ('$username', '$email','$name', '$password', 'blank-profile-picture-973460_960_720.webp');";
             mysqli_query($conn, $insertvals);

@@ -35,8 +35,16 @@ if (isset($_GET["id"])) {
             </div>
                 
 
-                <div id="blocker"  style="position: fixed; height: 100%; width: 1010px; top: 67px; right: 0px; z-index:9999;     background-color: #FF5757;
-                    ; font-size:70px;">
+                <div id="blocker"  style="
+                position: fixed; 
+                height: 100%; 
+                top: 67px; 
+                right: 0px;
+                /* left:546px;  */
+                left:35%;
+                z-index:9999;     
+                background-color: #FF5757;
+                ; font-size:70px;">
                     <img src="icons/chat_40dp_FILL0_wght400_GRAD0_opsz40.png" alt=""
                     style="padding-left: 40%;padding-top:20%;">
                     <h1 style="font-size:38px; margin-left:35%; color:white;
