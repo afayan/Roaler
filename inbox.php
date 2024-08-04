@@ -16,6 +16,7 @@ if (isset($_GET["id"])) {
     <title>Inbox</title>
     <link rel="stylesheet" href="roaler.css">
     <link rel="stylesheet" href="roaler2.css">
+    <link rel="stylesheet" href="roaler3.css">
     <link rel="icon" href="../roalerLogo.png" type="image/jpeg">
 
 </head>

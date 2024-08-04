@@ -61,3 +61,106 @@
     padding: 10px;
     color: rgb(47, 47, 47);
 }
+
+@media (max-width: 1000px) {
+    .leftcol{
+        background-color: #FF5757;
+        flex-direction: row;
+        height: 65px;
+    }
+
+    *{
+    }
+
+    body{
+        overflow-y: scroll;
+        height: 100%;
+    }
+
+    .rightcol{
+        display: none;
+    }
+
+    .roll{
+        left: 0px;
+        position: absolute;
+        top: 130px;
+        height: 90%;
+        width: 100%;
+        overflow-y: scroll;
+    }
+
+    .messageContent{
+        position: absolute;
+        left: 0px;
+    }
+
+    .tweet-content{
+        width: 85%;
+        overflow-y: hidden;
+    }
+
+    .centre{
+        overflow: hidden;
+    }
+
+    footer{
+        position:fixed;
+        z-index: 90;
+        width: 100%;
+        bottom: 0px;
+    }
+
+    #sendMesg{
+        position: fixed;
+        padding: 0px;
+        margin: 0px;
+        width: inherit;
+    }
+
+    .chat{
+        left: 0px;
+        position: absolute;
+        padding: 0px;
+        margin: 2px;
+        height: 54px;
+        width:inherit;
+    }
+
+    header{
+        height:30px;
+    }
+
+    #sendMessage{
+        position: absolute;
+        right: 0px;
+    }
+
+    .replyBar{
+        position: absolute;
+        width: 90%;
+        left: 0px;
+    }
+
+    #blocker{
+        display: none;
+    }
+
+    #DMtoSend{
+        width: 200px;
+    }
+
+    #sendDM{
+        position: absolute;
+        right: 0px;
+    }
+
+    #sendDMBar{
+        width: 100px;
+    }
+
+    .friendSection{
+        position: absolute;
+        width: 100%;
+    }
+}
